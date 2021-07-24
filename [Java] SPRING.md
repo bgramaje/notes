@@ -202,3 +202,91 @@ Experimento exp = appContext.getBean(Experimento.class);
 ```
 
 > `@Primary` annotation should be used if there is one clear favorite to be used in a majority of situations. The `@Qualifier` annotation takes precedence over the `@Primary` annotation. Eso siginifica que si tengo el `@Primary` en la clase de Animales, pero en experimento uso el `@Qualifier("Plantas")`, el experimento hará uso de la categoría de plantas.
+
+
+### Constructor and setter injection
+
+Todo lo que hemos visto hasta ahora era una inyección de dependencias de tipo `Field Injection`, pero tenemos dos tipos mas de inyección de dependencias, la : `Constructor Injection` y `Setter Injection`.
+
+####  *`Constructor Injection`*
+
+Es la que se realiza a través del contructor el cual tiene una dependecia sobre otro bean o clase/componente. En este caso es la clase Experimento sobre categoria.
+
+```java
+//Plantas.java
+@Component
+@Qualifier("Plantas")
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+```java
+//Experimento.java
+@Component
+public class Experimento {
+    /*
+    @Autowired
+    private Categoria cat;
+    */
+    private Categoria cat;
+
+    @Autowired
+    public Experimento(@Qualifier("Plantas")Categoria cat) {
+        this.cat = cat;
+    }
+    //...
+}
+```
+
+> The use of the `@Autowired` annotation is optional when using constructors dependecy injection.
+
+####  *`Setter Injection`*
+
+Otra manera de realizar lo mismo, en vez de con el constructor de la propia clase, es con un propio setter de la clase.
+
+```java
+//Plantas.java
+@Component
+@Qualifier("Plantas")
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+```java
+//Experimento.java
+@Component
+public class Experimento {
+    /*
+    @Autowired
+    private Categoria cat;
+    */
+    private Categoria cat;
+
+    @Autowired
+    @Qualifier("contentBasedFilter")
+    public void setCategory(Categoria cat) {
+        //...
+    }
+    //...
+}
+```
+
+> Setter injection is more readable as it specifies the name of the dependency as the method name but the number of setter methods increases with each increasing dependency increasing the boiler plate code.
+
+Usando este approach evitamos la excepión de `BeanCurrentlyInCreationException`. Ya que la principal diferencia entre la inyección por contrusctor y la inyeccón por setter, es que la del setter unicamente inyecta dependecias cuando son necesarias, y la de constructor siempre son inyectadas cuando se crea una nueva instancia del objeto en cuestión. En este caso el objeto de la clase Experimento.
+
+####  *`Field Injection`*
+
+```java
+//Experimento.java
+@Component
+public class Experimento {
+    @Autowired
+    private Categoria cat;
+    //...
+}
+```
+
+> Using `field injection` keeps the code simple and readable, but it is unsafe because Spring can set private fields of the objects. 
