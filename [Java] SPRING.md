@@ -80,10 +80,10 @@ ApplicationContext appContext = SpringApplication.run(ExampleApplication.class, 
 //use ApplicationContext to find which filter is being used, the one with the @Component tag.
 Experimento exp = appContext.getBean(Experimento.class);	
 ```
-#### Autowiring by `@Primary`, `@Qualifier` and Name
+### *Autowiring by `@Primary`, `@Qualifier` and Name*
 Hasta aqui hemos visto el uso de beans, pero que pasa si tenemos otra categoria? Como sabe Spring que categoría debe elegir dependiendo del experimento? Para este caso tenemos el autowiring por tipo con el `@Primary`, o por `@Qualifier` o por Nombre.
 
-##### Autowiring by `@Primary`
+#### *Autowiring by `@Primary`*
 
 Creamos una nueva categoria:
 
@@ -136,7 +136,7 @@ public class Animales extends Categoria {
 
 A partir de ahora, todos los experimentos que creemos, tendran la categoría Plantas, puesto que esta clase es la que contiene la anotación `@Primary`. Si a la clase de `Animales.java` también añadimos `@Primary`, Spring lanzará un erro puesto no sabe que clase debe elegir ya que ambas tienen la misma prioridad. 
 
-##### *Autowiring by Name*
+#### *Autowiring by Name*
 
 En vez de usar el `@Primary`, simplemente con usar el mismo nombre en la variabl de la clase que vamos a usar es suficiente. Es decir: 
 
