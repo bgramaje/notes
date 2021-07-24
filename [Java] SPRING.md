@@ -1,10 +1,10 @@
 ### 👨‍🏫 SPRING FRAMEWORK
 > The Spring framework is an open-source Java application framework, which is based on two key principles: dependency injection and Inversion of Control.
 
-#### Inversion of Control
+### Inversion of Control
 Process in which an object defines its dependencies without creating them.
 
-#### `@Component` or Bean
+### `@Component` or Bean
 Un Bean, son los objetos/componentes que forman el backend del servidor. Un ejemplo, seria el típico ejemplo de 'Producto'. Un bean es iniciado, ensamblado y manejado por el container de Spring. Se declara de la siguiente manera:
 
 ```java
@@ -80,7 +80,7 @@ ApplicationContext appContext = SpringApplication.run(ExampleApplication.class, 
 //use ApplicationContext to find which filter is being used, the one with the @Component tag.
 Experimento exp = appContext.getBean(Experimento.class);	
 ```
-### *Autowiring by `@Primary`, `@Qualifier` and Name*
+### Autowiring by `@Primary`, `@Qualifier` and Name
 Hasta aqui hemos visto el uso de beans, pero que pasa si tenemos otra categoria? Como sabe Spring que categoría debe elegir dependiendo del experimento? Para este caso tenemos el autowiring por tipo con el `@Primary`, o por `@Qualifier` o por Nombre.
 
 #### *Autowiring by `@Primary`*
