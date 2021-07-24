@@ -277,7 +277,7 @@ public class Experimento {
 
 Usando este approach evitamos la excepión de `BeanCurrentlyInCreationException`. Ya que la principal diferencia entre la inyección por contrusctor y la inyeccón por setter, es que la del setter unicamente inyecta dependecias cuando son necesarias, y la de constructor siempre son inyectadas cuando se crea una nueva instancia del objeto en cuestión. En este caso el objeto de la clase Experimento.
 
-####  *`Field Injection`*
+####  `*Field* Injection`
 
 ```java
 //Experimento.java
