@@ -80,6 +80,7 @@ ApplicationContext appContext = SpringApplication.run(ExampleApplication.class, 
 //use ApplicationContext to find which filter is being used, the one with the @Component tag.
 Experimento exp = appContext.getBean(Experimento.class);	
 ```
+
 ### Autowiring by `@Primary`, `@Qualifier` and Name
 Hasta aqui hemos visto el uso de beans, pero que pasa si tenemos otra categoria? Como sabe Spring que categoría debe elegir dependiendo del experimento? Para este caso tenemos el autowiring por tipo con el `@Primary`, o por `@Qualifier` o por Nombre.
 
@@ -155,3 +156,49 @@ Como el nombre de la variable es igual a el nombre de la clase que implementa la
 
 > The autowiring by name approach is advantageous when we want to use one bean in one situation and another bean in some other situation. Using @Primary will always give preference to one bean, which is impractical if we want to use different beans in different scenarios. 
 
+#### *Autowiring by `@Qualifier`*
+
+El último método es por un calificador, 'alias', que le pones a una clase. Siendo asi su implementación
+
+
+```java
+//Plantas.java
+@Component
+@Qualifier("Plantas")
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+```java
+//Animales.java
+@Component
+@Qualifier("Animales")
+public class Animales extends Categoria {
+    //...
+}
+```
+
+Posteriormente en la clase del experimento, que es la que tiene una dependencia sobre categoría, se especifíca la clase Categoria que se desea usar:
+
+```java
+//Experimento.java
+@Component
+public class Experimento {
+    @Autowired
+    @Qualifier("Plantas")
+    private Categoria cat;
+    //...
+}
+```
+
+Al crear el experimento, este será usado con la categoria Plantas pues es que se ha declarado en la clase Experimento como: `@Qualifier("Plantas")`
+
+```java
+//Main.java
+ApplicationContext appContext = SpringApplication.run(ExampleApplication.class, args);
+//use ApplicationContext to find which filter is being used, the one with the @Component tag.
+Experimento exp = appContext.getBean(Experimento.class);	
+```
+
+> `@Primary` annotation should be used if there is one clear favorite to be used in a majority of situations. The `@Qualifier` annotation takes precedence over the `@Primary` annotation. Eso siginifica que si tengo el `@Primary` en la clase de Animales, pero en experimento uso el `@Qualifier("Plantas")`, el experimento hará uso de la categoría de plantas.
