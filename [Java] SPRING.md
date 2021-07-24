@@ -208,7 +208,7 @@ Experimento exp = appContext.getBean(Experimento.class);
 
 Todo lo que hemos visto hasta ahora era una inyección de dependencias de tipo `Field Injection`, pero tenemos dos tipos mas de inyección de dependencias, la : `Constructor Injection` y `Setter Injection`.
 
-####  *`Constructor Injection`*
+####  `Constructor Injection`
 
 Es la que se realiza a través del contructor el cual tiene una dependecia sobre otro bean o clase/componente. En este caso es la clase Experimento sobre categoria.
 
@@ -241,7 +241,7 @@ public class Experimento {
 
 > The use of the `@Autowired` annotation is optional when using constructors dependecy injection.
 
-####  *`Setter Injection`*
+####  `Setter Injection`
 
 Otra manera de realizar lo mismo, en vez de con el constructor de la propia clase, es con un propio setter de la clase.
 
@@ -277,7 +277,7 @@ public class Experimento {
 
 Usando este approach evitamos la excepión de `BeanCurrentlyInCreationException`. Ya que la principal diferencia entre la inyección por contrusctor y la inyeccón por setter, es que la del setter unicamente inyecta dependecias cuando son necesarias, y la de constructor siempre son inyectadas cuando se crea una nueva instancia del objeto en cuestión. En este caso el objeto de la clase Experimento.
 
-####  `*Field* Injection`
+####  `Field Injection`
 
 ```java
 //Experimento.java
