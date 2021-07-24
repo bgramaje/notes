@@ -136,7 +136,7 @@ public class Animales extends Categoria {
 
 A partir de ahora, todos los experimentos que creemos, tendran la categoría Plantas, puesto que esta clase es la que contiene la anotación `@Primary`. Si a la clase de `Animales.java` también añadimos `@Primary`, Spring lanzará un erro puesto no sabe que clase debe elegir ya que ambas tienen la misma prioridad. 
 
-##### Autowiring by Name
+##### *Autowiring by Name*
 
 En vez de usar el `@Primary`, simplemente con usar el mismo nombre en la variabl de la clase que vamos a usar es suficiente. Es decir: 
 
