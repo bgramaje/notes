@@ -5,8 +5,6 @@
 
 ### Schema ☑
 
-#### Backend 🚧
-
 ```bash
 .
 ├── ...
@@ -17,10 +15,12 @@
 └── ...
 ```
 
+#### Backend 🚧
+
 * [Spring Framework](./Backend/Java_SPRING.md) - The Spring framework is an open-source Java application framework
 
 
-### Downloand
+### Download
 1. Clone the repository
 ```sh
 git clone https://github.com/boralbgra/express-api-template.git
