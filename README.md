@@ -1,17 +1,16 @@
 ## 👨‍🏫 PERSONAL NOTES
 > Todos los apuntes realizados por mi mientras estudiaba distintos frameworks.
 
-👨🏻‍💻 Hey coder! Aqui encontraras una serie de apuntes realizados por mi, que obviamente acepto sugerencias por si hay algún error, que realice mientras aprendía nuevas tecnologías.
-
+👨🏻‍💻 [ES] Hey coder! Aqui encontraras una serie de apuntes realizados por mi, que obviamente acepto sugerencias por si hay algún error, que realice mientras aprendía nuevas tecnologías.
+👨🏻‍💻 [EN] Hey coder! Here you will find a series of notes made by me, that obviously I accept suggestions in case there are any mistakes, that I made while I was learning new technologies.
 ### Schema ☑
 
 ```bash
 .
 ├── ...
-├── Backend         # Source files 
-│   ├── Java_SPRING.md         # api directory including all default shcema
-├── Devops         # Source files 
-├── Frontend         # Source files 
+├── Backend         # Backend notes
+│   ├── Java_SPRING.md         # Spring Java Framework notes.
+├── Frontend        # Fronted notes 
 └── ...
 ```
 
@@ -33,7 +32,7 @@ npm install
 ### Release History
 * 1.0.0
     * Started `Spring Framework` notes.
-    * Pending to start `Anguelar` notes.
+    * Pending to start `Angular` notes.
 
 
 
