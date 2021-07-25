@@ -444,7 +444,6 @@ Si no declaramos tambien el package que contiene el @SpringBootApplication, solo
 
 @ComponentScan can be used to include or exclude certain packages from being scanned. Podemos elegir que paquetes queremos que escanee para encontrar los beans. nclude filters are used to include certain classes in component scan. Exclude filters are used to stop Spring from auto-detecting classes in component scan.
 
-##### Include and exclude filters 
 
 ```bash
 FilterType.ANNOTATION
@@ -474,3 +473,14 @@ public class Plantas extends Categoria {
 }
 ```
 
+### Bean Lifecycle: `@PostConstruct`, `@PreDestroy`
+
+Spring provides post-initialization and pre-destruction callback methods on the beans.
+
+#### `@PostConstruct`
+
+When Spring creates a bean, the first thing it does, is to autowire the dependencies. The `@PostConstruct` annotation tells Spring to call the method for us once the object has been created. Its return type is always *`void`*
+
+#### `@PreDestroy`
+
+The callback method that is executed just before the bean is destroyed is annotated using `@PreDestroy`. A method with the @PreDestroy annotation can be used to release resources or close a database connection.
