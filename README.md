@@ -1,4 +1,4 @@
-## 👨‍🏫 PERSONAL NOTES
+### 👨‍🏫 PERSONAL NOTES
 > Todos los apuntes realizados por mi mientras estudiaba distintos frameworks.
 
 👨🏻‍💻 [ES] Hey coder! Aqui encontraras una serie de apuntes realizados por mi, que obviamente acepto sugerencias por si hay algún error, que realice mientras aprendía nuevas tecnologías.
