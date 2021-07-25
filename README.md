@@ -29,7 +29,7 @@
 ### Download
 1. Clone the repository
 ```sh
-git clone https://github.com/boralbgra/express-api-template.git
+git clone https://github.com/boralbgra/notes.git
 ```
 2. Start reading
 ```sh

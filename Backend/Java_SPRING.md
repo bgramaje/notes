@@ -310,8 +310,8 @@ public static void main(String[] args) {
     ApplicationContext appContext = SpringApplication.run(ExperimentExample.class, args);
 
     //Retrieve singleton bean from application context thrice
-    Experiment exp1 = appContext.getBean(Animales.class); 
-    Experiment exp2 = appContext.getBean(Animales.class); 
+    Animales al1 = appContext.getBean(Animales.class); 
+    Animales al2 = appContext.getBean(Animales.class); 
     
     //Prints the same bean with same reference.
     System.out.println(exp1);
@@ -342,14 +342,83 @@ public static void main(String[] args) {
     ApplicationContext appContext = SpringApplication.run(ExperimentExample.class, args);
 
     //Retrieve singleton bean from application context thrice
-    Experiment exp1 = appContext.getBean(Plantas.class); 
-    Experiment exp2 = appContext.getBean(Plantas.class); 
+    Plantas pl1 = appContext.getBean(Plantas.class); 
+    Plantas pl2 = appContext.getBean(Plantas.class); 
     
     //Prints two different beans with two referencies to memory address diferent.
-    System.out.println(exp1);
-    System.out.println(exp2);
+    System.out.println(pl1);
+    System.out.println(pl2);
 }
 ```
 
 > Spring creates a singleton bean even before we ask for it while a prototype bean is not created till we request Spring for the bean. 
+
+*REPASAR ESTE APARTADO!*
+
+*CUIDADO!*
+
+Si tenemos las clases definidas anteriormente:
+
+```java
+//Experimento.java
+@Component
+public class Experimento {
+    @Autowired
+    private Categoria cat;
+    //...
+}
+```
+
+```java
+//Plantas.java
+@Component
+@Scope("Prototype")
+//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+Y hacemos uso de este código:
+
+```java
+//main.java
+public static void main(String[] args) {
+    //ApplicationContext manages the beans and dependencies
+    ApplicationContext appContext = SpringApplication.run(ExampleApplication.class, args);
+    //use ApplicationContext to find which filter is being used, the one with the @Component tag.
+    Experimento exp = appContext.getBean(Experimento.class);	
+
+    //Retrieve singleton bean from application context thrice
+    Plantas pl1 = appContext.getBean(Plantas.class); 
+    Plantas pl2 = appContext.getBean(Plantas.class); 
+
+    System.out.println(exp);
+        
+    //Prints two same beans with two sames references to memory address.
+    System.out.println(pl1);
+    System.out.println(pl2);
+}
+```
+
+Según la teoría impartida, imprimiriamos un objeto exp con una referencia de este de memoria, y dos beans de tipo Plantas siendo totalmente distintos y con diferentes direcciones de memoria, pero NO. Tanto los beans `pl1` como `pl2` son el mismo bean con la misma dirección a memoria.  Debido a que se hace una inyección de dependecias sobre un bean `singleton` el cual es `Experimento` 
+
+> When a prototype bean is injected into a singleton bean, it loses its prototype behavior and acts as a singleton. Entonces, si no creasemos el experimento que es el objeto al cual se inyecta la dependecia de ` Plantas`, el scope de este bean seria de `Prototype` y no de `Singleton` 
+
+Para solucionar ese problema hace falta declarar la clase `Plantas` de la siguiente manera:
+
+```java
+//Plantas.java
+@Component
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode=ScopedProxyMode.TARGET_CLASS)
+//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+> The prototype bean doesn't get autowired into the singleton bean at the time of its creation. Instead, a proxy or placeholder object is autowired. When the developer requests the prototype bean from Spring, a new instance of the prototype bean is created and is returned by the application context. The proxy mode allows Spring container to inject a new object into the singleton bean.
+
+
+
 
