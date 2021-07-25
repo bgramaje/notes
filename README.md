@@ -5,7 +5,8 @@
 <br>
 
 👨🏻‍💻 [EN] Hey coder! Here you will find a series of notes made by me, that obviously I accept suggestions in case there are any mistakes, that I made while I was learning new technologies.
-### Schema ☑
+
+#### Notes schema ☑
 
 ```bash
 .
@@ -20,6 +21,10 @@
 
 * [Spring Framework](./Backend/Java_SPRING.md) - The Spring framework is an open-source Java application framework
 
+
+#### Frontend 🚊
+
+* [Angular](./Frontend/ANGULAR.md) - Angular framework
 
 ### Download
 1. Clone the repository
