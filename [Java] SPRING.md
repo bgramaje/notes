@@ -290,3 +290,65 @@ public class Experimento {
 ```
 
 > Using `field injection` keeps the code simple and readable, but it is unsafe because Spring can set private fields of the objects. 
+
+### Bean Scope
+
+It refers to the lifecycle and the visibility of beans. It tells how long the bean lives, how many instances of the bean are created, and how the bean is shared.
+
+> There are six types of scopes: singleton, prototype, request, session, application, and websocket. The singleton and prototype scopes can be used in any application while the last four scopes are only available for a web application. 
+
+#### *Singleton* scope.
+
+Es el scope por default del bean. Una única instancia del bean es creada y guardada (cacheada) en la memoria. Multiples peticiones sobre un bean devuelve el mismo bean con la misma referencia. Este scope se usa para minimizar el numero de objetos creatos. Los beans son creados cuando se ha cargado el contexto y se ha cacheado en memoria. 
+
+> This type of scope is best suited for cases where stateless beans are required
+
+```java
+//main.java
+public static void main(String[] args) {
+    //ApplicationContext manages the beans and dependencies
+    ApplicationContext appContext = SpringApplication.run(ExperimentExample.class, args);
+
+    //Retrieve singleton bean from application context thrice
+    Experiment exp1 = appContext.getBean(Animales.class); 
+    Experiment exp2 = appContext.getBean(Animales.class); 
+    
+    //Prints the same bean with same reference.
+    System.out.println(exp1);
+    System.out.println(exp2);
+}
+```
+
+#### *Prorotype* scope.
+
+Crea tantos beans nuevos y distintos, con referencias distintas cada uno, en cada petición que se realiza sobre el bean. Se realiza declarando el scope sobre el bean que queremos que se actue el scope de prototype.
+
+```java
+//Plantas.java
+@Component
+@Scope("Prototype")
+//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+> This type of scope is best suited for cases where we need to maintain the state of the beans.
+
+```java
+//main.java
+public static void main(String[] args) {
+    //ApplicationContext manages the beans and dependencies
+    ApplicationContext appContext = SpringApplication.run(ExperimentExample.class, args);
+
+    //Retrieve singleton bean from application context thrice
+    Experiment exp1 = appContext.getBean(Plantas.class); 
+    Experiment exp2 = appContext.getBean(Plantas.class); 
+    
+    //Prints two different beans with two referencies to memory address diferent.
+    System.out.println(exp1);
+    System.out.println(exp2);
+}
+```
+
+> Spring creates a singleton bean even before we ask for it while a prototype bean is not created till we request Spring for the bean. 
