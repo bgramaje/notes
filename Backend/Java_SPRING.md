@@ -419,6 +419,58 @@ public class Plantas extends Categoria {
 
 > The prototype bean doesn't get autowired into the singleton bean at the time of its creation. Instead, a proxy or placeholder object is autowired. When the developer requests the prototype bean from Spring, a new instance of the prototype bean is created and is returned by the application context. The proxy mode allows Spring container to inject a new object into the singleton bean.
 
+### Component Scan
 
+Como escanea los compomentes (beans) Spring? Usando `@ComponentScan`. 
 
+> The `@ComponentScan` annotation without any argument tells Spring to scan the current package as well as any sub-packages that might exist. Spring detects all classes marked with the @Component, @Repository, @Service, and @Controller annotations during component scan
+
+`@SpringBootApplication` = `@Configuration` + `@EnableAutoConfiguration` + `@ComponentScan`
+
+If a bean is present in a package other than the base package or its sub-packages, it will not be found (el mismo package es la misma carpeta o subcarpetas dentro de la carpeta 'padre'). If we want Spring to find beans defined in other packages, we need to use the @ComponentScan annotation and provide the path of the package where we want Spring to look for the beans:.
+
+```java
+//Plantas.java
+@Component
+@ComponentScan(basePackages={"package_name of the root of @SpringBootApplication", "package_name without the file with @SpringBootApplication"})
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+Si no declaramos tambien el package que contiene el @SpringBootApplication, solo encontrará los beans que estan en el package (carpeta) que le hemos pasado y no analizará ni buscará beans de donde esta el main con el @SpringBootApplication.
+
+#### Include and exclude filters 
+
+@ComponentScan can be used to include or exclude certain packages from being scanned. Podemos elegir que paquetes queremos que escanee para encontrar los beans. nclude filters are used to include certain classes in component scan. Exclude filters are used to stop Spring from auto-detecting classes in component scan.
+
+##### Include and exclude filters 
+
+```bash
+FilterType.ANNOTATION
+FilterType.ASPECTJ
+FilterType.ASSIGNABLE_TYPE
+FilterType.REGEX
+FilterType.CUSTOM
+```
+Con lo que tanto el approach siguiente como el de abajo es lo mismo.
+
+```java
+//Plantas.java
+@Component
+@ComponentScan(basePackages={"package_name of the root of @SpringBootApplication", "package_name without the file with @SpringBootApplication"})
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+```java
+//Plantas.java
+@Component
+//@ComponentScan(basePackages={"package_name of the root of @SpringBootApplication", "package_name without the file with @SpringBootApplication"})
+@ComponentScan(includeFilters = @ComponentScan.Filter (type= FilterType.REGEX, pattern="io.datajek.spring.basics.movierecommendersystem.lesson9.*"))
+public class Plantas extends Categoria {
+    //...
+}
+```
 
