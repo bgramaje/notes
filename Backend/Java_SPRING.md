@@ -484,3 +484,46 @@ When Spring creates a bean, the first thing it does, is to autowire the dependen
 #### `@PreDestroy`
 
 The callback method that is executed just before the bean is destroyed is annotated using `@PreDestroy`. A method with the @PreDestroy annotation can be used to release resources or close a database connection.
+
+### Lifecycle of prototype beans
+
+Spring manages the entire lifecycle of singleton beans but it does not completely manage the lifecycle of prototype beans. This is because there might be a large number of prototype instances and the container can become overwhelmed keeping track of them.
+
+> The Spring container creates the prototype beans and hands them over when requested. Thereafter, it is the responsibility of the application to destroy the bean and free up any resources that it has acquired.
+
+#### Dependency injection.
+
+En algunos proyectos, no se usan los nombres de `@Component` o `@Autowired`, sino que se usan `@Named` e `@Inject`. Para poder usarlos, debemos de descargar una dependencia en maven, edianto el fichero `pom.xml` de la siguiente manera:
+
+```xml
+<dependency>
+    <groupId>javax.inject</groupId>
+    <artifactId>javax.inject</artifactId>
+    <version>1</version>
+</dependency>
+```
+
+```java
+//Plantas.java
+import javax.inject.Named;
+
+@Named
+public class Plantas extends Categoria {
+    //...
+}
+```
+
+```java
+//Experimento.java
+import javax.inject.Named;
+import javax.inject.Inject;
+
+@Named
+public class Experimento {
+    @Inject
+    private Categoria cat;
+    //...
+}
+```
+
+> Both Spring and CDI annotations provide the same functionality. The only difference is that if the application is migrated to another framework, the CDI annotations can still be used, whereas Spring annotations are specific to the Spring framework. Thus, CDI annotations are often preferred because CDI is a Java EE standard.
