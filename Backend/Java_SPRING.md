@@ -573,16 +573,11 @@ public class Experimento {
 
 En el caso de que se trate un bean que opera sobre la capa de servicios, se usará la anotación `@Service`, de service layer. Y finalmente si un bean es el encargado de hacer de controlador para (por ejemplo) en un servidor rest hacer de proxy para decir que funcion debe realizar si hace una petición sobre determinada URL, habrá que usar la anotación de `@Controller`.
 
-#### `@Controller`
 
 > `@Controller` is used to define a controller in the web layer. Spring scans a class with @Controller to find methods that are mapped to different HTTP requests. `@RestController` (ejemplo de antes) is a specialized form of @Controller. 
 
-#### `@Service`
-
 > `@Service` is used in the business layer for objects that define the business logic.
-
-#### `@Repository`
 
 > `@Repository` is used in the data layer to encapsulate storage, retrieval, and search in a typical database.
 
-> The @Controller, @Service, and @Repository annotations are similar to @Component annotation with respect to bean creation and dependency injection, except that they provide specialized functionality
+The `@Controller`, `@Service`, and `@Repository` annotations are similar to `@Component` annotation with respect to bean creation and dependency injection, except that they provide specialized functionality
