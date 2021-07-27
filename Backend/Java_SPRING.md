@@ -527,3 +527,62 @@ public class Experimento {
 ```
 
 > Both Spring and CDI annotations provide the same functionality. The only difference is that if the application is migrated to another framework, the CDI annotations can still be used, whereas Spring annotations are specific to the Spring framework. Thus, CDI annotations are often preferred because CDI is a Java EE standard.
+
+### `Beans` Declartion
+
+Hasta ahora habiamos visto que se declaraban los beans de la siguiente manera: 
+
+```java
+//Experimento.java
+@Component
+public class Experimento {
+    @Autowired
+    private Categoria cat;
+    //...
+}
+```
+O bien de la siguiente manera:
+
+```java
+//Experimento.java
+import javax.inject.Named;
+import javax.inject.Inject;
+
+@Named
+public class Experimento {
+    @Inject
+    private Categoria cat;
+    //...
+}
+```
+Pero Spring te ofrece la posibildad de crearlos con distinta anotación dependiendo de la capa que estes usando.
+
+> The other three annotations, `@Controller`, `@Service`, and `@Repository`, are specific to layers.
+
+En el caso de que creemos un Bean que opera directamente sobre base de datos, se declarará de usando la anotación `@Repository` :
+
+```java
+//Experimento.java
+@Repository
+public class Experimento {
+    @Autowired
+    private Categoria cat;
+    //...
+}
+```
+
+En el caso de que se trate un bean que opera sobre la capa de servicios, se usará la anotación `@Service`, de service layer. Y finalmente si un bean es el encargado de hacer de controlador para (por ejemplo) en un servidor rest hacer de proxy para decir que funcion debe realizar si hace una petición sobre determinada URL, habrá que usar la anotación de `@Controller`.
+
+#### `@Controller`
+
+`@Controller` is used to define a controller in the web layer. Spring scans a class with @Controller to find methods that are mapped to different HTTP requests. `@RestController` (ejemplo de antes) is a specialized form of @Controller. 
+
+#### `@Service`
+
+`@Service` is used in the business layer for objects that define the business logic.
+
+#### `@Repository`
+
+`@Repository` is used in the data layer to encapsulate storage, retrieval, and search in a typical database.
+
+> The @Controller, @Service, and @Repository annotations are similar to @Component annotation with respect to bean creation and dependency injection, except that they provide specialized functionality
