@@ -586,9 +586,8 @@ The `@Controller`, `@Service`, and `@Repository` annotations are similar to `@Co
 
 Siempre se puede hacer un archivo de propiedades tipo `.env` con distintas variables de entorno, para parámetros de conexión a BBDD y demás. Para hcarlo, se crea un archivo llamado `app.properties` en `src/main/resources`. Y se crea un archivo de tipo key:value, de la siguiente manera: 
 
-```bash
+```xml
 plantas.prueba = Sunflower
-}
 ```
 
 Luego donde queramos usarlo para que lea los parámetros, lo indicaremos de esta manera:
