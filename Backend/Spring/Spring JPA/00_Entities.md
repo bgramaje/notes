@@ -154,7 +154,7 @@ public class Departamento {
 public class Departamento {
     //...
     @JsonManagedReference
-    @OneToMany(mappedBy="departamento") //nombre de la variable creada en la otra entity?
+    @OneToMany(mappedBy="departamento_id") //nombre de la variable creada en la otra entity?
     private Set<Empleado> empleados
     //...
 }
@@ -174,9 +174,60 @@ public class Empleado {
 }
 ```
 
-
-
 ##### `@OneToOne`
+
+```java
+// Departamento.java
+@Entity
+public class Departamento {
+    //...
+    @OneToOne(mappedBy="departamento_id") //nombre de la variable creada en la otra entity?
+    private Empleado empleado
+    //...
+}
+```
+
+```java
+// Empleado.java
+@Entity
+public class Empleado {
+    //...
+    @OneToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="departamento_id") //la columna que contiene como claves ajenas las pk de departamento, se llama departamento_id.
+    private Departamento departamento;
+
+    //GET, SET for each variable.
+}
+```
 
 ##### `@ManyToMany`
 
+```java
+// Direccion.java
+@Entity
+public class Direccion {
+    //...
+    @ManyToMany(mappedBy="direccionesEntrega", cascade = CascadeType.ALL) //nombre de la variable creada en la otra entity que forma partícipe de la relacion
+    private Set<Cliente> clientesConDireccion
+    //...
+}
+```
+
+```java
+// Cliente.java
+@Entity
+public class Cliente {
+    //...
+    @OneToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "direcciones_cliente",
+        joinColumns = @JoinColumn(name = "cliente_id", nullable = false),
+        inverseJoinColumns = @JoinColumn(name="direccion_id", nullable = false)
+    )
+    private Set<Direccion> direccionesEntrega
+
+    //GET, SET for each variable.
+}
+```
+
+Al ser una relacion de muchos a muchos, una nueva tabla es requerida, y con el @JoinTable se genera la tabla que relaciona tanto Cliente con direcciones.
