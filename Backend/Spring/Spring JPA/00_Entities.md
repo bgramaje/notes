@@ -79,3 +79,55 @@ public class Usuario {
     //GET, SET for each variable.
 }
 ```
+
+#### RELACIONES BBDD
+
+##### `@ManyToOne`
+
+Tipica relacion de Empleado y departamento, donde un empleado esta en un departamento, pero un departamento puede estar en mas de un empleado. Se usa uso de la anotación `@ManyToOne` en Spring.
+
+```java
+// Departamento.java
+@Entity
+public class Departamento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    //GET, SET for each variable.
+}
+```
+
+La anotación `@ManyToOne`, puede ser usada con distintos parámetros:
+ 
+* `optional`. 
+    * Indica si la relación es opcional. Si el objeto que hace link en la relación puede ser nulo, es decir, si puede haber un Empleado que no pertenezca a ningun departamento. En este caso se le pone a false, ya que si o si, un empleado esta en un departamento.
+* `Cascade`. 
+    * Esta propiedad le indica que operaciones en cascada puede realizar con la Entidad relacionada. Si se borra un departamento, el usuario cuyo departamento ha sido borrado, se le borra la referencia, y ese usuario pasa a no tener departamento.
+* `Fetch`. 
+    * se utiliza para determinar cómo debe ser cargada la entidad, los valores:
+        * `EAGER` (ansioso): Indica que la relación debe de ser cargada al momento de cargar la entidad.
+        * `LAZY` (perezoso): Indica que la relación solo se cargará cuando la propiedad sea leída por primera vez.
+
+```java
+// Empleado.java
+@Entity
+public class Empleado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Departamento departamento;
+
+    //GET, SET for each variable.
+}
+```
+
+
+
+##### `@OneToMany`
+
+##### `@OneToOne`
+
+##### `@ManyToMany`
+
