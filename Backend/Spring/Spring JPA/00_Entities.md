@@ -82,6 +82,8 @@ public class Usuario {
 
 #### RELACIONES BBDD
 
+Es recomendable que en Spring las relaciones de la BBDD sean bidireccionales, es decir, si la tabla X tiene `@ManyToOne` con la tabla Y, que la tabla Y tenga una relación `@OneToMany` con la tabla X.
+
 ##### `@ManyToOne`
 
 Tipica relacion de Empleado y departamento, donde un empleado esta en un departamento, pero un departamento puede estar en mas de un empleado. Se usa uso de la anotación `@ManyToOne` en Spring.
@@ -99,11 +101,11 @@ public class Departamento {
 
 La anotación `@ManyToOne`, puede ser usada con distintos parámetros:
  
-* `optional`. 
+* `optional`
     * Indica si la relación es opcional. Si el objeto que hace link en la relación puede ser nulo, es decir, si puede haber un Empleado que no pertenezca a ningun departamento. En este caso se le pone a false, ya que si o si, un empleado esta en un departamento.
-* `Cascade`. 
+* `Cascade`
     * Esta propiedad le indica que operaciones en cascada puede realizar con la Entidad relacionada. Si se borra un departamento, el usuario cuyo departamento ha sido borrado, se le borra la referencia, y ese usuario pasa a no tener departamento.
-* `Fetch`. 
+* `Fetch` 
     * se utiliza para determinar cómo debe ser cargada la entidad, los valores:
         * `EAGER` (ansioso): Indica que la relación debe de ser cargada al momento de cargar la entidad.
         * `LAZY` (perezoso): Indica que la relación solo se cargará cuando la propiedad sea leída por primera vez.
@@ -117,6 +119,55 @@ public class Empleado {
     private Integer id;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="departamento") //la columna que contiene como claves ajenas las pk de departamento, se llama departamento.
+    private Departamento departamento;
+
+    //GET, SET for each variable.
+}
+```
+
+##### `@OneToMany`
+
+En el ejemplo anterior hemos hecho una relacion la cual permite que un usuario únicamente este asignado a UN ÚNICO departamento. Pero si queremos mantener un registro en la tabla departamento, para saber que departamento esta en que usuarios, hay que realizar una relación `@OneToMany`.
+
+La clase Empleado se mantiene de igual manera.
+
+```java
+// Departamento.java
+@Entity
+public class Departamento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @OneToMany(mappedBy="departamento") //nombre de la variable creada en la otra entity?
+    private Set<Empleado> empleados
+    //GET, SET for each variable.
+}
+```
+
+> OJO! Puede ser que cuando devuelva una respuesta JSON sobre el empleado, este resulte en un bucle infinito pues Empleado contiene departamento que tiene a Empleado que este vuelve a contener departamento. Para solucionarlo:
+
+```java
+// Departamento.java
+@Entity
+public class Departamento {
+    //...
+    @JsonManagedReference
+    @OneToMany(mappedBy="departamento") //nombre de la variable creada en la otra entity?
+    private Set<Empleado> empleados
+    //...
+}
+```
+
+```java
+// Empleado.java
+@Entity
+public class Empleado {
+    //...
+    @JsonBackReference
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="departamento_id") //la columna que contiene como claves ajenas las pk de departamento, se llama departamento_id.
     private Departamento departamento;
 
     //GET, SET for each variable.
@@ -124,8 +175,6 @@ public class Empleado {
 ```
 
 
-
-##### `@OneToMany`
 
 ##### `@OneToOne`
 
