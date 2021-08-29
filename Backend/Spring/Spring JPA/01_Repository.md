@@ -129,7 +129,7 @@ Para crear estos grafos, hay que crear un fichero en /src/main/resources/META-IN
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings>
 <!-- 	<entity class="org.thoughts.on.java.model.Author" name="Author"> -->	
-		<!-- ARTICULOS QUERY  -->
+		<!-- USUARIO QUERY  -->
 		<entity class="com.project.example.entity.Usuario" name="usuario">
 			<table name="usuario" />
 			<named-query name="Usuario.findAllGraph"> <!-- Nombre de la query para el Repositorio -->
