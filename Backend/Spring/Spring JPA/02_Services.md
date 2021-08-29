@@ -32,29 +32,29 @@ Finalmente se declaran los metodos que van a ser llamados desde el controlador, 
 ```java
 @Service
 public class UsuarioService {
-@Autowired
-UsuarioRepository usuarioRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
+    
+    public Optional<Usuario> getOne(int id){
+        return usuarioRepository.findById(id);
+    }
+        
+    public Optional<Usuario> getByNombre(String nombre){
+        return usuarioRepository.findByNombre(nombre);
+    }
 
-public Optional<Usuario> getOne(int id){
-	return usuarioRepository.findById(id);
-}
-	
-public Optional<Usuario> getByNombre(String nombre){
-	return usuarioRepository.findByNombre(nombre);
-}
+    public void save(Usuario usuario){
+        usuarioRepository.save(usuario);
+    }
 
-public void save(Usuario usuario){
-	usuarioRepository.save(usuario);
-}
-
-public void delete(int id) {
-	usuarioRepository.deleteById(id);
-}
-  
-@Query(name = "Usuario.findAllGraph")   //En el caso de lo de EntityGraph habría que hacerlo de esta manera
-public List<Usuario> findAllGraph(){
-	return usuarioRepository.findAllGraph();
-}
+    public void delete(int id) {
+        usuarioRepository.deleteById(id);
+    }
+    
+    @Query(name = "Usuario.findAllGraph")   //En el caso de lo de EntityGraph habría que hacerlo de esta manera
+    public List<Usuario> findAllGraph(){
+        return usuarioRepository.findAllGraph();
+    }
     //...
 }
 ```
