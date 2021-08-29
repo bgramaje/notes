@@ -107,8 +107,8 @@ La anotación `@ManyToOne`, puede ser usada con distintos parámetros:
     * Esta propiedad le indica que operaciones en cascada puede realizar con la Entidad relacionada. Si se borra un departamento, el usuario cuyo departamento ha sido borrado, se le borra la referencia, y ese usuario pasa a no tener departamento.
 * `Fetch` 
     * se utiliza para determinar cómo debe ser cargada la entidad, los valores:
-        * `EAGER` (ansioso): Indica que la relación debe de ser cargada al momento de cargar la entidad.
-        * `LAZY` (perezoso): Indica que la relación solo se cargará cuando la propiedad sea leída por primera vez.
+        * `EAGER` (ansioso): Indica que la relación debe de ser cargada al momento de cargar la entidad. Las relaciones `@Basic`, `@ManyToMany` y `@OneToOne` se comportan así por defecto.
+        * `LAZY` (perezoso): Indica que la relación solo se cargará cuando la propiedad sea leída por primera vez. Es el comportamiento por defecto de `@OneToMany`, `@ManyToMany` y `@ElementCollection`.
 
 ```java
 // Empleado.java

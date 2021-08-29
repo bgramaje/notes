@@ -113,6 +113,64 @@ usuarioRepository.findByNombre("Pepe"); //returns a user which name is Pepe
 usuarioRepository.existsByNombre("Pepe"); //returns a boolean if usuario with nombre="Pepe" exists
 ```
 
+#### `@EntityGraph`.
+
+Las entities graph son usadas para mejorar nuestra queries y ayudar el rendimiento de nuestra aplicación. Hasta que Enity Graph fue introducido en JPA, necesitabamos hacer uso de FetchType.LAZY o FetchType.EAGER para cargar nuestras colecciones. Esto ocasionaba que en muchas casos cuando usabamos LAZY, en la que los datos se cargan según se necesitan, tuviesemos n+1 queries. Por eso, para conseguir mejorar el rendimiento de las queries cuando tienen colecciones asociadas, fue introducida esta característica.
+
+¡PREGUNTAR LO DEL N+1 QUERY!
+
+> Básicamente lo que hace JPA, es cargar todo el grafo para hacer una única query y así evitar las queries de las relaciones asociadas.
+
+Al ejecutar la misma aplicación pero con este pequeño cambio, podremos ver que el resultado es una única query que funciona como una join, con lo que hemos mejorado el tiempo y el rendimiento de la consulta sobre BBDD.
+
+Para crear estos grafos, hay que crear un fichero en /src/main/resources/META-INF llamado `orm.xml`. Suponiendo que existen relaciones entre tablas, siendo en este caso que Usuario puede tener Experimentos:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings>
+<!-- 	<entity class="org.thoughts.on.java.model.Author" name="Author"> -->	
+		<!-- ARTICULOS QUERY  -->
+		<entity class="com.project.example.entity.Usuario" name="usuario">
+			<table name="usuario" />
+			<named-query name="Usuario.findAllGraph"> <!-- Nombre de la query para el Repositorio -->
+		        <query>SELECT u FROM com.project.example.entity.Usuario u </query>
+		    </named-query>
+            <!-- Aquí declaramos los campos que tienen relaciones con otras tablas, en este caso experimentos. -->
+		    <named-entity-graph name="Usuario.ListaUsuarios">  <!-- Nombre de la query para declarar los atributos partícipes del nodo del entity graph -->
+		    	<named-attribute-node name="experimentos"/>
+		    </named-entity-graph>
+		</entity>
+		
+</entity-mappings>
+```
+
+Luego de declararla, se debe de indicar en el repositorio que esta consulta debe ser usada cuando se requiera:
+
+```java
+import org.springframework.project.entity.Usuario; //Importamos la entidad declarada en el proyecto Spring.
+
+@Repository
+@Transactional
+public class UsuarioRepository extends JpaRepository<Usuario, Integer>{ //extendemos de la interfaz, declarando la entidad que sera manejada en el repositorio, y su respectiva Primary KEY.
+    @EntityGraph(value = "Usuario.ListaUsuarios")
+    List <Usuario> findAllGraph();
+}
+```
+
+Y luego apra poder usarlo:
+
+```java
+@Autowired
+UsuarioRepository usuarioRepository;
+
+@Query(name = "Usuario.findAllGraph") //valor que tiene asignado en el repositorio
+public List<Usuario> findAllGraph() {
+    return usuarioRepository.findAllGraph(); //llamamos a la funcion que hemos creado en el repositorio
+}
+```
+
+
+
 
 
 
