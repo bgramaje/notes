@@ -113,7 +113,7 @@ usuarioRepository.findByNombre("Pepe"); //returns a user which name is Pepe
 usuarioRepository.existsByNombre("Pepe"); //returns a boolean if usuario with nombre="Pepe" exists
 ```
 
-#### `@EntityGraph`.
+#### `@EntityGraph`
 
 Las entities graph son usadas para mejorar nuestra queries y ayudar el rendimiento de nuestra aplicación. Hasta que Enity Graph fue introducido en JPA, necesitabamos hacer uso de FetchType.LAZY o FetchType.EAGER para cargar nuestras colecciones. Esto ocasionaba que en muchas casos cuando usabamos LAZY, en la que los datos se cargan según se necesitan, tuviesemos n+1 queries. Por eso, para conseguir mejorar el rendimiento de las queries cuando tienen colecciones asociadas, fue introducida esta característica.
 
@@ -157,7 +157,7 @@ public class UsuarioRepository extends JpaRepository<Usuario, Integer>{ //extend
 }
 ```
 
-Y luego apra poder usarlo:
+Y luego para poder usarlo:
 
 ```java
 @Autowired
