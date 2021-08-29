@@ -68,26 +68,53 @@ public class UsuarioService {
 La operación `SELECT`, sería de la siguiente manera: 
 
 ```java
-    usuarioRepository.findAll(); //returns List<Usuario>
-    usuarioRepository.findById(1); //return Usuario
+usuarioRepository.findAll(); //returns List<Usuario>
+usuarioRepository.findById(1); //return Usuario
 ```
 
 La operación `INSERT` y `UPDATE`, sería de la siguiente manera: 
 
 ```java
-    usuarioRepository.save(usuario);
+usuarioRepository.save(usuario);
 ```
 
 La función `DELETE`, sería de la siguiente manera: 
 
 ```java
-    usuarioRepository.deleteById(1);
+usuarioRepository.deleteById(1);
 ```
 
 Y luego otras funciones como:
 ```java
-    usuarioRepository.existsById(1); //returns a boolean if usuario with id=1 exists
+usuarioRepository.existsById(1); //returns a boolean if usuario with id=1 exists
 ```
+
+#### Declaración de tus propias operaciones CRUD.
+
+Para poder crear tus propias operaciones CRUD, con Spring JPA es muy facil. Simplemente declarandolas en el repositorio con la MISMA SINTAXIS que sigue Spring JPA, te crea las funciones automáticamente. Es decir, si queremos crear una operacion que te devuelva su usuario por nombre, simplemente habría que declararla de la siguiente manera:
+
+
+```java
+import org.springframework.project.entity.Usuario; //Importamos la entidad declarada en el proyecto Spring.
+
+@Repository
+@Transactional
+public class UsuarioRepository extends JpaRepository<Usuario, Integer>{ //extendemos de la interfaz, declarando la entidad que sera manejada en el repositorio, y su respectiva Primary KEY.
+    Optional<Usuario> findByNombre(String nombre);
+    boolean existsByNombre(String nombre);
+}
+```
+
+> Un Optional es una clase que puede o no contener un valor, es decir, que se comporta como un wrapper para cualquier tipo de objeto que pueda o no ser nulo. Con el optional podemos hacer que nos devuelva una Lista(si hay mas de un usuario con el mismo nombre), o un objeto Usuario(si solo hay un usuario con el nombre proporcionado), o un nulo, ya que no hay ningun usuaro con el nombre proporcionado.
+
+Ahora solo faltaria usarla como el resto:
+```java
+usuarioRepository.findByNombre("Pepe"); //returns a user which name is Pepe
+usuarioRepository.existsByNombre("Pepe"); //returns a boolean if usuario with nombre="Pepe" exists
+```
+
+
+
 
 
 
