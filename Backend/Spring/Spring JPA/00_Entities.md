@@ -231,3 +231,5 @@ public class Cliente {
 ```
 
 Al ser una relacion de muchos a muchos, una nueva tabla es requerida, y con el @JoinTable se genera la tabla que relaciona tanto Cliente con direcciones.
+
+
