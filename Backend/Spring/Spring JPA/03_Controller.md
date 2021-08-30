@@ -38,7 +38,7 @@ public class UsuarioController {
 
 #### Mapeo de rutas
 
-Para realizar el mapeo de rutas, se realiza con la anotación `@GetMapping("/hello)`, si es una peticion GET o con `@RequestMapping(method=RequestMethod.GET, value="/hello")`. Lo mismo para las operaciones POST, PUT, DELETE.
+Para realizar el mapeo de rutas, se realiza con la anotación `@GetMapping("/")`, si es una peticion GET o con `@RequestMapping(method=RequestMethod.GET, value="/")`. Lo mismo para las operaciones POST, PUT, DELETE.
 
 Si queremos que el controlador de usuarios opere sobre un enlace (string) previamente definido, es decir, que todas las operaciones sobre usuarios, dicho enlace vaya precedido por un string común, por ejemplo: http://localhost:4200/usuarios/list o http://localhost:4200/usuarios/create. Que ese http://localhost:4200/usuarios/ sea el que indique que tiene que ir al controlador de usuarios y no a otro, se hace uso de la anotación `@RequestMapping`
 
