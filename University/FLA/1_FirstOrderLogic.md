@@ -47,7 +47,7 @@ Con lo que :
 op _+_ : Numbers Numbers -> Numbers .
 ```
 
-el operador _+_, tiene una aridad de dos, puesto admite dos argumentos, de tipo Numbers Numbers (lo de antes de la ->), y devuelve un valor de tipo Numbers (lo de despues de la ->)
+El operador `_+_`, tiene una aridad de dos, puesto admite dos argumentos, de tipo Numbers Numbers (lo de antes de la ->), y devuelve un valor de tipo Numbers (lo de despues de la ->). Al tener una aridad de 2, se le suele llamar `operador binario`. El caso de que solo tenga un argumento, p.e. calcular el factorial de un númerom se tratará de un `operador unario`, y si tiene tres, se le diria un `operador ternario`, lo siguiente de ahi ya son `operadores n-arios`.
 
 ##### Constantes
 
@@ -56,3 +56,23 @@ Cuando antes de la -> en la parte izquierda, no hay declarado nada, con lo que n
 ```
 op 0 : -> Numbers . *** Constant
 ```
+
+#### Logic Signature
+
+Se trata de una pareja de  Σ = (F, Π), donde F es una signature de `function symbols` y Π una signature de `predicate symbols`
+
+##### Simbolos de predicado
+
+Los símbolos de predicado, siempre devuelven un booleano. Pilla como argumento del tipo que quieras, y devuelve un booleano (`true` or `false`)
+
+```
+mod Philosophers is
+    sort Human .
+    ops : homer plato socrates : -> Human . *** Constants
+    op isClever : Human -> Bool . *** predicates
+    op colleagues : Beings Beings -> Bool . *** Binary
+    op teacherOf : Beings Beings -> Bool . *** predicates
+endm
+```
+
+Las operaciones `isClever`, `teacherOf`, son un símbolo de predicado.
