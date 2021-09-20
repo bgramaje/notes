@@ -11,6 +11,7 @@ First-order logic is an appropriate (simple, familiar) framework to:
 
 #### Signatures
 [EN] A signature is a set of symbols together with a mapping ar which indicates the number of arguments associated to each symbol (i.e., its arity)
+<br>
 [ES] Conjunto de simbolos que indican el número de argumentos asociado al simbolo; su `aridad` 
 
 A continuación se expone un ejemplo para aritmética en el programa, (creo recordar que se llama), mod.
