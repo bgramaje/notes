@@ -29,7 +29,7 @@ endm
 
 ##### Operadores binarios
 
-En los operadores hay que diferencias una estructura básica. A la hora de declarar el operador, hay que hacerlo siguiendo mas menos la estructura que se ha usado en la programación de toda la vida. Por ejemplo, el operador declarado arriba como `_+_`.
+En los operadores hay que diferenciar una estructura básica. A la hora de declarar el operador, hay que hacerlo siguiendo mas menos la estructura que se ha usado en la programación de toda la vida. Por ejemplo, el operador declarado arriba como `_+_`.
 
 Para hacer una funcion que sume dos numeros, de normal hariamos lo siguiente: 
 
@@ -83,3 +83,16 @@ endm
 
 #### Términos (Terms)
 
+Los términos son definidos como:
+
+[EN]
+
+* `T-Base1` - Variable symbols `x` are terms
+* `T-Base2` - Constant symbols a (i.e: ar(a) == 0) are terms
+* `T-Induction` - If F is a K-ary funcion symbol (i.e: k = ar(f))
+
+[ES]
+
+*  `T-Base1` - Todas las variables son términos.
+*  `T-Base2` - Todas las constantes `constant symbol` son términos.
+* `T-Induction` - Si t1,.....,tk son términos y 'f' es una función de k-aridadm entonces f(t1,.....,tk) es un término
