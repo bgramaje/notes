@@ -12,7 +12,7 @@ First-order logic is an appropriate (simple, familiar) framework to:
 #### Signatures
 [EN] A signature is a set of symbols together with a mapping ar which indicates the number of arguments associated to each symbol (i.e., its arity). A signature σ consists of a set
 of constant symbols, a set of function symbols and a set of predicate symbols. Each function and predicate symbol has an arity k > 0.
-<br>
+<br><br>
 [ES] Conjunto de simbolos que indican el número de argumentos asociado al simbolo; su `aridad` 
 
 A continuación se expone un ejemplo para aritmética en el programa, (creo recordar que se llama), mod.
@@ -108,4 +108,18 @@ The set of terms is denoted as `T(F,X)` | `(also T(Σ, X))`.
 *  `Assignments` : counter := 3 is a term: ‘:=’ is a binary symbol; counterand 3 are constant symbols.
 *  `Conditional statements` : if n > 0 then n := n-1 else n := n+1 is a term: ‘if’ is a ternary symbol, > is a binary operator,
 
-Las operacioens aritméticas son terminos. 
+Las operaciones aritméticas son terminos. Los numeros, se representan como sucesiones de Peano. 
+
+La función fact(0) es un término puesto que la aridad de esta es de k-ary = 1, y el parámetro que tiene es una variable que es un término. Al ser t1 un término y k-ary = 1, la funcón fact(0) por inducción es un término?
+
+> Ese 0 de fact(0), esta representado como 0 de toda la vida, o como 0 de sucesión de Peano?. Y en términos a partir de ahora todos los números tienen que ser representados como sucesión de Peano? 
+
+###### Sucesion de Peano
+Únicamentge
+
+0 = 0
+1 = S(0)
+2 = S(S(0))
+3 = S(S(S(0)))
+
+> Donde S significa `sucesor`, y el número n = S^n(0).
