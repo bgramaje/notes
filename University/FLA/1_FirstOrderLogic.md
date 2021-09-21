@@ -169,5 +169,5 @@ isPhilosopher(socrates)
 
 * isPhilosopher(socrates) es una fórmula, puesto que socrates es una variable que se ha declarado anteriormente, con lo que es un término, y al tratarse de un predicado por que devuelve un boolean, y todos los parámetros respecto a su aridad son términos, este predicado a su vez es una fórmula. `F-Base1`
 
-* (∀x) isPhilosopher(x) ⇒ isClever(x) se tratade una fórmula, puesto que philosopher es un predicado cuyo parametro (la variable x) es un término, con lo que para  (∀x) φ  es tambien una fórmula `F-Induction2`. 
+* (∀x) isPhilosopher(x) ⇒ isClever(x) se trata de una fórmula, puesto que philosopher es un predicado cuyo parametro (la variable x) es un término, con lo que para  (∀x) φ  es tambien una fórmula `F-Induction2`. 
 > En este caso tambien se trata de una sentece?, puesto que todas las variables que participan en esta fórmula estan cuantificadas.
