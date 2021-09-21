@@ -10,8 +10,7 @@ First-order logic is an appropriate (simple, familiar) framework to:
 * *reason* about computations and program properties `verification`.
 
 #### Signatures
-[EN] A signature is a set of symbols together with a mapping ar which indicates the number of arguments associated to each symbol (i.e., its arity). A signature σ consists of a set
-of constant symbols, a set of function symbols and a set of predicate symbols. Each function and predicate symbol has an arity k > 0.
+[EN] A signature is a set of symbols together with a mapping ar which indicates the number of arguments associated to each symbol (i.e., its arity). 
 <br><br>
 [ES] Conjunto de simbolos que indican el número de argumentos asociado al simbolo; su `aridad` 
 
@@ -60,7 +59,8 @@ op 0 : -> Numbers . *** Constant
 
 #### Logic Signature
 
-Se trata de una pareja de  Σ = (F, Π), donde F es una signature de `function symbols` y Π una signature de `predicate symbols`
+Se trata de una pareja de  Σ = (F, Π), donde F es una signature de `function symbols` y Π una signature de `predicate symbols`. A signature σ consists of a set of constant symbols, a set of function symbols and a set of predicate symbols. Each function and predicate symbol has an arity k > 0.
+
 
 ##### Simbolos de predicado
 
@@ -81,6 +81,8 @@ endm
 * `Monadic`, significa un operadior unario, de un solo argumento en griego? 
 * `homer`,  `plato`, `socrates`, son constantes puesto que no tienen ningún indice de aridad (lo de la parte izq de la ->).
 * `colleagues` se trata de una operacion binaria puesto que tiene una aridad de 2 (2 argumentos).
+
+Los predicados no son términos, sino fórmulas.
 
 #### Términos (Terms)
 
@@ -105,21 +107,67 @@ The set of terms is denoted as `T(F,X)` | `(also T(Σ, X))`.
 *  `Arithmetic expressions ` : x + (y + z), x × y + x × z, x + 0.
 *  `Data structures` : Numbers n are represented in Peano’s notation as sn(0) (only two symbols are necessary: 0 and s!).
 *  `Function calls` : 2+1 (or s(s(0)) + s(0)) represents a call to the addition operator.
-*  `Assignments` : counter := 3 is a term: ‘:=’ is a binary symbol; counterand 3 are constant symbols.
+*  `Assignments` : counter := 3 is a term: ‘:=’ is a `binary symbol` ; counterand 3 are constant symbols.
 *  `Conditional statements` : if n > 0 then n := n-1 else n := n+1 is a term: ‘if’ is a ternary symbol, > is a binary operator,
 
-Las operaciones aritméticas son terminos. Los numeros, se representan como sucesiones de Peano. 
+Las operaciones aritméticas son terminos. Los numeros, se representan como sucesiones de Peano. Las llamadas a las funciones, sus parámetros tambien se hacen con las sucesiones de Peano, si estos son números. Las asignaciones son un símbolo binario, `binary symbol`.
 
 La función fact(0) es un término puesto que la aridad de esta es de k-ary = 1, y el parámetro que tiene es una variable que es un término. Al ser t1 un término y k-ary = 1, la funcón fact(0) por inducción es un término?
 
-> Ese 0 de fact(0), esta representado como 0 de toda la vida, o como 0 de sucesión de Peano?. Y en términos a partir de ahora todos los números tienen que ser representados como sucesión de Peano? 
+> Ese 0 de fact(0), esta representado como 0 de toda la vida, o como 0 de sucesión de Peano? Y en términos a partir de ahora todos los números tienen que ser representados como sucesión de Peano? 
+
+Tener cuidado con los condiciones.
+
+Los condicionales siguen de normal lo siguiente:
+
+*Suponiendo: if n > 0 then n := n-1 else n := n+1*, donde el If es un símbolo ternario, cuya aridad es 3, y el <> es un simbolo bínaro, cuya aridad es 2 (`_<>_`)
+
+```
+if_then_else : Bool Int Int -> Int
+```
+
+Con lo que si se supone que se usa lo siguiente: *if n > 0 then n := 0*, este NO es un término debido a que no presenta la aridad 3, al faltar el else. Y el *+1* tampoco, por que la asignación de un valor a una variable es de aridad 2: `_:=_`
 
 ###### Sucesion de Peano
-Únicamentge
+Únicamente dos símbolos 0 y S! ¿Porqué?
 
+```
 0 = 0
 1 = S(0)
 2 = S(S(0))
 3 = S(S(S(0)))
+```
 
-> Donde S significa `sucesor`, y el número n = S^n(0).
+> Donde S significa `sucesor`, y el número n = S^n(0)
+
+#### Fórmulas
+
+Los fórmulas son definidas como:
+
+[EN]
+
+* `F-Base1` - if P is an n-ary predicate symbol and t1, . . . ,tn are terms, then P(t1, . . . ,tn) is a formula (which is called an atom)
+* `F-Induction1` - if φ and φ' are formulas, then φ ∧ φ' and ¬φ (and also φ ∨ φ', φ ⇒ φ',...) are formulas.
+* `F-Induction2` - if x is a variable and φ is a formula, then (∀x) φ and (∃x) φ are formulas
+
+[ES]
+
+* `F-Base1` - Si un predicado P de aridad K, todos sus argumentos son términos t1,.....,tl. Entonces P(t1,.....,tk) es una fórmula. tambien llamada como `átomo`
+* `F-Induction1` - Si φ and φ' are formulas, entonces φ ∧ φ' y ¬φ (and also φ ∨ φ', φ ⇒ φ',...) son formulas, es decir, cualquier operacion de AND;OR;NOT:XOR:etc, sobre dos formulas, tambien es una fórmula.
+* `F-Induction2` - Si x es una variable y φ es una fórmula, entonces (∀x) φ y (∃x) φ son formulas. 
+
+#### Sentence 
+[EN] A sentence is a well-formed formula whose variables are all quantified.
+<br>
+[ES] Esto tiene que aparecer SIEMPRE en todas las variables que aparezacan sobre la formula. Si hay dos variables, en las dos tiene que aparece un para todo (∀) o un existe (∃) sobre estas variables.
+
+```
+isPhilosopher(socrates)
+(∀x) isPhilosopher(x) ⇒ isClever(x)
+(∀x)(∀y) colleagues(x, y) ⇒ colleagues(y, x)
+```
+
+* isPhilosopher(socrates) es una fórmula, puesto que socrates es una variable que se ha declarado anteriormente, con lo que es un término, y al tratarse de un predicado por que devuelve un boolean, y todos los parámetros respecto a su aridad son términos, este predicado a su vez es una fórmula. `F-Base1`
+
+* (∀x) isPhilosopher(x) ⇒ isClever(x) se tratade una fórmula, puesto que philosopher es un predicado cuyo parametro (la variable x) es un término, con lo que para  (∀x) φ  es tambien una fórmula `F-Induction2`. 
+> En este caso tambien se trata de una sentece?, puesto que todas las variables que participan en esta fórmula estan cuantificadas.
