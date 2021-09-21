@@ -10,7 +10,8 @@ First-order logic is an appropriate (simple, familiar) framework to:
 * *reason* about computations and program properties `verification`.
 
 #### Signatures
-[EN] A signature is a set of symbols together with a mapping ar which indicates the number of arguments associated to each symbol (i.e., its arity)
+[EN] A signature is a set of symbols together with a mapping ar which indicates the number of arguments associated to each symbol (i.e., its arity). A signature σ consists of a set
+of constant symbols, a set of function symbols and a set of predicate symbols. Each function and predicate symbol has an arity k > 0.
 <br>
 [ES] Conjunto de simbolos que indican el número de argumentos asociado al simbolo; su `aridad` 
 
@@ -89,10 +90,22 @@ Los términos son definidos como:
 
 * `T-Base1` - Variable symbols `x` are terms
 * `T-Base2` - Constant symbols a (i.e: ar(a) == 0) are terms
-* `T-Induction` - If F is a K-ary funcion symbol (i.e: k = ar(f))
+* `T-Induction` - If F is a K-ary funcion symbol (i.e: k = ar(f)), where k>0 (not a constant), and t1,.....,tk are terms, then f (t1, . . . ,tk ) is a term.
 
 [ES]
 
 *  `T-Base1` - Todas las variables son términos.
 *  `T-Base2` - Todas las constantes `constant symbol` son términos.
 * `T-Induction` - Si t1,.....,tk son términos y 'f' es una función de k-aridadm entonces f(t1,.....,tk) es un término
+
+The set of terms is denoted as `T(F,X)` | `(also T(Σ, X))`.
+
+##### Terms - Use
+
+*  `Arithmetic expressions ` : x + (y + z), x × y + x × z, x + 0.
+*  `Data structures` : Numbers n are represented in Peano’s notation as sn(0) (only two symbols are necessary: 0 and s!).
+*  `Function calls` : 2+1 (or s(s(0)) + s(0)) represents a call to the addition operator.
+*  `Assignments` : counter := 3 is a term: ‘:=’ is a binary symbol; counterand 3 are constant symbols.
+*  `Conditional statements` : if n > 0 then n := n-1 else n := n+1 is a term: ‘if’ is a ternary symbol, > is a binary operator,
+
+Las operacioens aritméticas son terminos. 
