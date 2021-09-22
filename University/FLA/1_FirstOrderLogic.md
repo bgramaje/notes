@@ -77,7 +77,7 @@ mod Philosophers is
 endm
 ```
 
-* Las operaciones `isClever`, `teacherOf`, ¿`isPhilosopher`, `colleagues`? son un símbolo de predicado.
+* Las operaciones `isClever`, `teacherOf`, `isPhilosopher`, `colleagues` son un símbolo de predicado.
 * `Monadic`, significa un operadior unario, de un solo argumento en griego? 
 * `homer`,  `plato`, `socrates`, son constantes puesto que no tienen ningún indice de aridad (lo de la parte izq de la ->).
 * `colleagues` se trata de una operacion binaria puesto que tiene una aridad de 2 (2 argumentos).
@@ -98,7 +98,7 @@ Los términos son definidos como:
 
 *  `T-Base1` - Todas las variables son términos.
 *  `T-Base2` - Todas las constantes `constant symbol` son términos.
-* `T-Induction` - Si t1,.....,tk son términos y 'f' es una función de k-aridadm entonces f(t1,.....,tk) es un término
+* `T-Induction` - Si t1,.....,tk son términos y 'f' es una función de k-aridad entonces f(t1,.....,tk) es un término
 
 The set of terms is denoted as `T(F,X)` | `(also T(Σ, X))`.
 
@@ -138,7 +138,7 @@ Con lo que si se supone que se usa lo siguiente: *if n > 0 then n := 0*, este NO
 3 = S(S(S(0)))
 ```
 
-> Donde S significa `sucesor`, y el número n = S^n(0)
+Donde S significa `sucesor`, y el número n = S<sup>n</sup>(0)
 
 #### Fórmulas
 
@@ -167,7 +167,7 @@ isPhilosopher(socrates)
 (∀x)(∀y) colleagues(x, y) ⇒ colleagues(y, x)
 ```
 
-* isPhilosopher(socrates) es una fórmula, puesto que socrates es una variable que se ha declarado anteriormente, con lo que es un término, y al tratarse de un predicado por que devuelve un boolean, y todos los parámetros respecto a su aridad son términos, este predicado a su vez es una fórmula. `F-Base1`
+* isPhilosopher(socrates) es una fórmula; puesto que socrates es una variable que se ha declarado anteriormente, con lo que es un término, y al tratarse de un predicado por que devuelve un boolean, y todos los parámetros respecto a su aridad son términos, este predicado a su vez es una fórmula. `F-Base1`
 
 * (∀x) isPhilosopher(x) ⇒ isClever(x) se trata de una fórmula, puesto que philosopher es un predicado cuyo parametro (la variable x) es un término, con lo que para  (∀x) φ  es tambien una fórmula `F-Induction2`. 
 > En este caso tambien se trata de una sentece?, puesto que todas las variables que participan en esta fórmula estan cuantificadas.
