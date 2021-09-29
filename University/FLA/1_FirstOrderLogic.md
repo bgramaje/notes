@@ -204,5 +204,5 @@ Ejemplo:
 
 En este caso tenemos F que es {0,s}, y nos expresa que la aridad de 0, ar(0) = 0, con lo que es una constante. Y que la aridad de s, ar(s) = 1, con lo que admite un argumento. Dandonos un conjunto de valores para el dominio que pertenece a los numeros naturales, por 0<sup>A</sup> = 0 and s<sup>A</sup>(x) = x + 1 para todo x ∈ N. Evaluamos con las reglas anteriores.
 
-El primer caso es 0, puesto que al tener aridad 0 se trata de una constante, y según la regla de `ET-Base2`, [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>, esto será igual a [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup>, que según el enunciado, 0<sup>A</sup> = 0, con lo que para este caso, 0]<sup>A</sup><sub>α</sub> = 0.
+El primer caso es 0, puesto que al tener aridad 0 se trata de una constante, y según la regla de `ET-Base2`, [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>, esto será igual a [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup>, que según el enunciado, 0<sup>A</sup> = 0, con lo que para este caso, [0]<sup>A</sup><sub>α</sub> = 0.
 
