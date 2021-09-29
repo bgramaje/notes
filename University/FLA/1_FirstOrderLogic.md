@@ -212,7 +212,7 @@ En referente al siguiente término a evaluar que es [s(s(0))]<sup>A</sup><sub>α
 * s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>) → ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1 *`aplicando la igualdad de` s<sup>A</sup>(x) = x + 1, siendo x el s(0)* <br> 
 * ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1 → s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>) *`aplicando ET-Induction`* <br>
 * s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>); → ([0]<sup>A</sup><sub>α</sub> + 1) + 1 *`aplicando la igualdad de` s<sup>A</sup>(x) = x + 1, siendo x el 0*<br>
-* ([0]<sup>A</sup><sub>α</sub> + 1) + 1 → (0<sup>A</sup> + 1) + 1 *`aplicando ET-Base2, puesto que 0 es una constante al tener aridad 0`* <br> 
-* (0<sup>A</sup> + 1) + 1 → (0 + 1) + 1 *`aplicando la igualdad de` [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup>* <br> 
+* ([0]<sup>A</sup><sub>α</sub> + 1) + 1 → (0<sup>A</sup> + 1) + 1 *`aplicando ET-Base2, puesto que 0 es una constante al tener aridad 0` [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup><br>*
+* (0<sup>A</sup> + 1) + 1 → (0 + 1) + 1 *`aplicando la igualdad de` 0<sup>A</sup>* = 0<br> 
 * (0 + 1) + 1 → 2<br>
 
