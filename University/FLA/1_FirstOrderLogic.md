@@ -206,13 +206,13 @@ En este caso tenemos F que es {0,s}, y nos expresa que la aridad de 0, ar(0) = 0
 
 El primer caso es 0, puesto que al tener aridad 0 se trata de una constante, y según la regla de `ET-Base2`, [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>, esto será igual a [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup>, que según el enunciado, 0<sup>A</sup> = 0, con lo que para este caso, [0]<sup>A</sup><sub>α</sub> = 0.
 
-En referente al siguiente término a evaluar que es [s(s(0))]<sup>A</sup><sub>α</sub>, eso según la regla de `ET-Induction`, eso es igual a s<sup>A</sup>([s(0)]<sup>A</sup><sub>α</sub>). Como en la regla nos dice que <sup>A</sup>(x) = x + 1, y nosotros tenemos s<sup>A</sup>(x) siendo x el valor: ([s(0)]<sup>A</sup><sub>α</sub>), eso será igual a ([s(0)]<sup>A</sup><sub>α</sub>) + 1 y siguiendo la lógica
+En referente al siguiente término a evaluar que es [s(s(0))]<sup>A</sup><sub>α</sub>, eso según la regla de `ET-Induction`, eso es igual a s<sup>A</sup>([s(0)]<sup>A</sup><sub>α</sub>). Como en la regla nos dice que s<sup>A</sup>(x) = x + 1, y nosotros tenemos s<sup>A</sup>(x) siendo x el valor: ([s(0)]<sup>A</sup><sub>α</sub>), eso será igual a ([s(0)]<sup>A</sup><sub>α</sub>) + 1 y siguiendo la lógica
 
-* [ s ( s(0) )]<sup>A</sup><sub>α</sub> = s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>); <br>   *aplicando ET-Induction*
-* s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>) = ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1;<br> *aplicando la igualdad de s*
-* ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1 = s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>);<br>
-* s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>); = ([0]<sup>A</sup><sub>α</sub> + 1) + 1;<br>
-* ([0]<sup>A</sup><sub>α</sub> + 1) + 1 = (0<sup>A</sup> + 1) + 1;<br>
-* (0<sup>A</sup> + 1) + 1 = (0 + 1) + 1;<br>
-* (0 + 1) + 1 = 2<br>
+* [ s ( s(0) )]<sup>A</sup><sub>α</sub> → s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>); *aplicando ET-Induction* <br>   
+* s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>) → ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1; *aplicando la igualdad de s<sup>A</sup>(x) = x + 1, siendo x el s(0)* <br> 
+* ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1 → s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>); *aplicando ET-Induction* <br>
+* s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>); → ([0]<sup>A</sup><sub>α</sub> + 1) + 1; *aplicando la igualdad de s<sup>A</sup>(x) = x + 1, siendo x el 0*<br>
+* ([0]<sup>A</sup><sub>α</sub> + 1) + 1 → (0<sup>A</sup> + 1) + 1;*aplicando ET-Base2, puesto que 0 es una constante al tener aridad 0* <br> 
+* (0<sup>A</sup> + 1) + 1 → (0 + 1) + 1; *aplicando la igualdad de [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup>* <br> 
+* (0 + 1) + 1 → 2<br>
 
