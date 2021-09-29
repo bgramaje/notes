@@ -192,4 +192,10 @@ De noraml los simbolos de función son entendidos como funciones, y los simbolos
 
 #### Evaluation mapping
 
-<p>A valuation mapping α : X → D gives values to the variable symbols. The evaluation mapping [_]<sup>A</sup><sub>α</sub> : T (F, X ) → D (also [ ]Mα if A is part of M) is defined as follows: for all terms t ∈ T (F, X )</p>
+<p>A valuation mapping α : X → D gives values to the variable symbols. The evaluation mapping [_]<sup>A</sup><sub>α</sub> : T (F, X ) → D (also [_]<sup>MA</sup><sub>α</sub> if A is part of M) is defined as follows: for all terms t ∈ T (F, X )</p>
+
+*  (ET-Base1) if t is a variable symbol x, then [x]<sup>A</sup><sub>α</sub> = α(x)
+*  (ET-Base2) if t is a constant symbol a, then [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>
+*  (ET-Induction) if t = f (t1, . . . ,tk ) for some k-ary function symbol f and terms t1, . . . ,tk , then [f (t1, . . . ,tk )]<sup>A</sup><sub>α</sub> = fA([t1]<sup>A</sup><sub>α</sub> , . . . , [t1]<sup>A</sup><sub>α</sub> ).
+
+
