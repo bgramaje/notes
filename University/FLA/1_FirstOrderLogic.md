@@ -198,4 +198,11 @@ De noraml los simbolos de función son entendidos como funciones, y los simbolos
 *  (ET-Base2) if t is a constant symbol a, then [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>
 *  (ET-Induction) if t = f (t1, . . . ,tk ) for some k-ary function symbol f and terms t1, . . . ,tk , then [f (t1, . . . ,tk )]<sup>A</sup><sub>α</sub> = fA([t1]<sup>A</sup><sub>α</sub> , . . . , [t1]<sup>A</sup><sub>α</sub> ).
 
+Ejemplo: 
+
+Let F = {0,s} with ar(0) = 0 and ar(s) = 1. Let A = (N, F<sub>N</sub>) be givenby 0<sup>A</sup> = 0 and s<sup>A</sup>(x) = x + 1 for all x ∈ N. For any valuation function α.
+
+En este caso tenemos F que es {0,s}, y nos expresa que la aridad de 0, ar(0) = 0, con lo que es una constante. Y que la aridad de s, ar(s) = 1, con lo que admite un argumento. Dandonos un conjunto de valores para el dominio que pertenece a los numeros naturales, por 0<sup>A</sup> = 0 and s<sup>A</sup>(x) = x + 1 para todo x ∈ N. Evaluamos con las reglas anteriores.
+
+El primer caso es 0, puesto que al tener aridad 0 se trata de una constante, y según la regla de `ET-Base2`, [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>, esto será igual a [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup>, que según el enunciado, 0<sup>A</sup> = 0, con lo que para este caso, 0]<sup>A</sup><sub>α</sub> = 0.
 
