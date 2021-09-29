@@ -200,7 +200,7 @@ De noraml los simbolos de función son entendidos como funciones, y los simbolos
 
 Ejemplo: 
 
-Let F = {0,s} with ar(0) = 0 and ar(s) = 1. Let A = (N, F<sub>N</sub>) be givenby 0<sup>A</sup> = 0 and s<sup>A</sup>(x) = x + 1 for all x ∈ N. For any valuation function α.
+*Let F = {0,s} with ar(0) = 0 and ar(s) = 1. Let A = (N, F<sub>N</sub>) be givenby 0<sup>A</sup> = 0 and s<sup>A</sup>(x) = x + 1 for all x ∈ N. For any valuation function α.*
 
 En este caso tenemos F que es {0,s}, y nos expresa que la aridad de 0, ar(0) = 0, con lo que es una constante. Y que la aridad de s, ar(s) = 1, con lo que admite un argumento. Dandonos un conjunto de valores para el dominio que pertenece a los numeros naturales, por 0<sup>A</sup> = 0 and s<sup>A</sup>(x) = x + 1 para todo x ∈ N. Evaluamos con las reglas anteriores.
 
