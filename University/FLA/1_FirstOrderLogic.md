@@ -196,7 +196,7 @@ De noraml los simbolos de función son entendidos como funciones, y los simbolos
 
 *  (ET-Base1) if t is a variable symbol x, then [x]<sup>A</sup><sub>α</sub> = α(x)
 *  (ET-Base2) if t is a constant symbol a, then [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>
-*  (ET-Induction) if t = f (t1, . . . ,tk ) for some k-ary function symbol f and terms t1, . . . ,tk , then [f (t1, . . . ,tk )]<sup>A</sup><sub>α</sub> = fA([t1]<sup>A</sup><sub>α</sub> , . . . , [t1]<sup>A</sup><sub>α</sub> ).
+*  (ET-Induction) if t = f (t1, . . . ,tk ) for some k-ary function symbol f and terms t1, . . . ,tk , then [f (t1, . . . ,tk )]<sup>A</sup><sub>α</sub> = f<sup>A</sup>([t1]<sup>A</sup><sub>α</sub> , . . . , [t1]<sup>A</sup><sub>α</sub> ).
 
 Ejemplo: 
 
@@ -205,4 +205,14 @@ Ejemplo:
 En este caso tenemos F que es {0,s}, y nos expresa que la aridad de 0, ar(0) = 0, con lo que es una constante. Y que la aridad de s, ar(s) = 1, con lo que admite un argumento. Dandonos un conjunto de valores para el dominio que pertenece a los numeros naturales, por 0<sup>A</sup> = 0 and s<sup>A</sup>(x) = x + 1 para todo x ∈ N. Evaluamos con las reglas anteriores.
 
 El primer caso es 0, puesto que al tener aridad 0 se trata de una constante, y según la regla de `ET-Base2`, [a]<sup>A</sup><sub>α</sub> = a<sup>A</sup>, esto será igual a [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup>, que según el enunciado, 0<sup>A</sup> = 0, con lo que para este caso, [0]<sup>A</sup><sub>α</sub> = 0.
+
+En referente al siguiente término a evaluar que es [s(s(0))]<sup>A</sup><sub>α</sub>, eso según la regla de `ET-Induction`, eso es igual a s<sup>A</sup>([s(0)]<sup>A</sup><sub>α</sub>). Como en la regla nos dice que <sup>A</sup>(x) = x + 1, y nosotros tenemos s<sup>A</sup>(x) siendo x el valor: ([s(0)]<sup>A</sup><sub>α</sub>), eso será igual a ([s(0)]<sup>A</sup><sub>α</sub>) + 1 y siguiendo la lógica
+
+[s(s(0))]<sup>A</sup><sub>α</sub> = s<sup>A</sup>([s(0)]<sup>A</sup><sub>α</sub>);
+s<sup>A</sup>([s(0)]<sup>A</sup><sub>α</sub>) = ([s(0)]<sup>A</sup><sub>α</sub>) + 1;
+([s(0)]<sup>A</sup><sub>α</sub>) + 1 = s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>);
+s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>); = ([0]<sup>A</sup><sub>α</sub> + 1) + 1;
+([0]<sup>A</sup><sub>α</sub> + 1) + 1 = (0<sup>A</sup> + 1) + 1;
+(0<sup>A</sup> + 1) + 1 = (0 + 1) + 1;
+(0 + 1) + 1 = 2
 
