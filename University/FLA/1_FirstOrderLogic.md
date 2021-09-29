@@ -171,3 +171,25 @@ isPhilosopher(socrates)
 
 * (∀x) isPhilosopher(x) ⇒ isClever(x) se trata de una fórmula, puesto que philosopher es un predicado cuyo parametro (la variable x) es un término, con lo que para  (∀x) φ  es tambien una fórmula `F-Induction2`. 
 > En este caso tambien se trata de una sentece?, puesto que todas las variables que participan en esta fórmula estan cuantificadas.
+
+#### Literals and Clauses
+
+Un literal `L` es o un átomo, o la negación de un átomo.
+
+Una Clause `C` es una disyunción L1 ∨ · · · ∨ Ln de literales, normalmente representado como un `set`. Implicitamente todas las variables dentro de la clausula están universalmente cuantificadas. 
+
+```
+{ { isPhilosopher(socrates) },{ isClever(homer) },{ teacherOf(socrates,plato) } }
+```
+
+El ejemplo de arriba sería un conjunto de set, en este caso 3, que únicamente disponen de 1 literal, que este a su vez es un átomo.
+
+> Every well-formed formula ϕ can be expressed as a set Cϕ of clauses
+
+A → B, es lo mismo que ¬A ∨ B, que cuya versión clausal, sería { ¬A,B }.
+
+De noraml los simbolos de función son entendidos como funciones, y los simbolos de predicado como relaciones.
+
+#### Evaluation mapping
+
+<p>A valuation mapping α : X → D gives values to the variable symbols. The evaluation mapping [_]<sup>A</sup><sub>α</sub> : T (F, X ) → D (also [ ]Mα if A is part of M) is defined as follows: for all terms t ∈ T (F, X )</p>
