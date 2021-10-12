@@ -88,13 +88,13 @@ Los predicados no son términos, sino fórmulas.
 
 Los términos son definidos como:
 
-[EN]
+*[EN]*
 
 * `T-Base1` - Variable symbols `x` are terms
 * `T-Base2` - Constant symbols a (i.e: ar(a) == 0) are terms
 * `T-Induction` - If F is a K-ary funcion symbol (i.e: k = ar(f)), where k>0 (not a constant), and t1,.....,tk are terms, then f (t1, . . . ,tk ) is a term.
 
-[ES]
+*[ES]*
 
 *  `T-Base1` - Todas las variables son términos.
 *  `T-Base2` - Todas las constantes `constant symbol` son términos.
@@ -144,22 +144,23 @@ Donde S significa `sucesor`, y el número n = S<sup>n</sup>(0)
 
 Los fórmulas son definidas como:
 
-[EN]
+*[EN]*
 
 * `F-Base1` - if P is an n-ary predicate symbol and t1, . . . ,tn are terms, then P(t1, . . . ,tn) is a formula (which is called an atom)
 * `F-Induction1` - if φ and φ' are formulas, then φ ∧ φ' and ¬φ (and also φ ∨ φ', φ ⇒ φ',...) are formulas.
 * `F-Induction2` - if x is a variable and φ is a formula, then (∀x) φ and (∃x) φ are formulas
 
-[ES]
+*[ES]*
 
 * `F-Base1` - Si un predicado P de aridad K, todos sus argumentos son términos t1,.....,tl. Entonces P(t1,.....,tk) es una fórmula. tambien llamada como `átomo`
 * `F-Induction1` - Si φ and φ' are formulas, entonces φ ∧ φ' y ¬φ (and also φ ∨ φ', φ ⇒ φ',...) son formulas, es decir, cualquier operacion de AND;OR;NOT:XOR:etc, sobre dos formulas, tambien es una fórmula.
 * `F-Induction2` - Si x es una variable y φ es una fórmula, entonces (∀x) φ y (∃x) φ son formulas. 
 
 #### Sentence 
-[EN] A sentence is a well-formed formula whose variables are all quantified.
+*[EN]* A sentence is a well-formed formula whose variables are all quantified.
 <br>
-[ES] Esto tiene que aparecer SIEMPRE en todas las variables que aparezacan sobre la formula. Si hay dos variables, en las dos tiene que aparece un para todo (∀) o un existe (∃) sobre estas variables.
+
+*[ES]* Esto tiene que aparecer SIEMPRE en todas las variables que aparezacan sobre la formula. Si hay dos variables, en las dos tiene que aparece un para todo (∀) o un existe (∃) sobre estas variables.
 
 ```
 isPhilosopher(socrates)
@@ -216,3 +217,9 @@ En referente al siguiente término a evaluar que es [s(s(0))]<sup>A</sup><sub>α
 * (0<sup>A</sup> + 1) + 1 → (0 + 1) + 1 *`aplicando la igualdad de` 0<sup>A</sup>* = 0<br> 
 * (0 + 1) + 1 → 2 *`aplicando ya la suma normal y corriente`*<br>
 
+##### Diapositiva 12.
+Ejemplo con validación (con variables).
+
+Cuando declara *x +<sub>A</sub> y = x + y*, &&  x multiply <sub>A</sub> y = x*, para todos x, y ∈ N. Eso significa que la y puede ser z o cualquier otra letra (sin tener en cuenta las de las constantes)? Porque al hacer [x × y]<sup>A</sup><sub>α</sub>, = [x]<sup>A</sup><sub>α</sub>, ya que se cumple que x y y = x, pero cuando lo hace con 'z', también [x × z]<sup>A</sup><sub>α</sub>, = [x]<sup>A</sup><sub>α</sub>
+
+A parte de esto es que cuando tienes [x]<sup>A</sup><sub>α</sub>, y sabes su función de validación, la cual te la dice el enunciado como α(x) = α(y) = 2, eso implica que *[x]<sup>A</sup><sub>α</sub> = α(x) = 2*.
