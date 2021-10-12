@@ -135,3 +135,45 @@ Y luego nos pueden hacer sustituciones como por ejemplo:
 
 t[b]<sub>1</sub> = f(b,y) → Coger el termino t desde Λ en la primera posicion y cambiarlo por b.
 t[b]<sub>1</sub>[a]<sub>2</sub> = f(b,a) → Coger el termino t desde Λ en la primera posicion y cambiarlo por b, y coger el termino t en la segunda posicion y cambiarlo por a.
+
+#### Substitutions
+
+Dom(σ) = {x ∈ X | σ(x) != x}.
+
+σ*barrita*(x) = σ(x) and σ(f (t<sub>1</sub>, . . . ,t<sub>k</sub> )) = f (σ(t<sub>1</sub>), . . . , σ(t<sub>k</sub>))
+
+Se declara de la siguiente manera:
+
+σ = {x<sub>1</sub> → t<sub>1</sub>, . . . , x<sub>n</sub> → t<sub>n</sub>}.
+
+> The identity or empty substitution is written ε (note that Dom(ε) = ∅).
+
+#### Matching, unification
+
+A term *`l` matches `t`* if there is a substitution σ (the matcher of t against`) such that t = σ(l). Two terms *`s` and `t` unify* if there is a substitution σ (a unifier of s and t) such that σ(s) = σ(t).
+
+> Matching → Cuando instanciando *UNA* obtenemos la misma función t = σ(l). Unify  → Cuando instanciando *AMBAS* obtenemos la misma función σ(s) = σ(t). *`SOLO SE APLICA A VARIABLES. A CONSTANTES NO!`*
+
+For l = f(x,y), s = f(f(z,a),y), and t = f(x,a), we have:
+> Ejercicio hecho en una hoja de los apuntes, bvien detallado.
+
+* l *matches* both s and t. (s y t se ajustan al patrón de l)
+```
+l = f(x,y) U σ = {x → f(z,a)} → σ(l) = f(f(z,a),y) → s
+l = f(x,y) U σ = {y → a)} → σ(l) = f(x,a) → t
+```
+* s and t *unify*
+```
+s = f(f(z,a),y) U σ = {x → f(z,a), y → a)} → σ(l) = f(f(z,a),a)
+t = f(x,a) U σ = {x → f(z,a), y → a)} → σ(l) = f(f(z,a),a)
+```
+> Al usar la misma substitucion e instar ambos términos, obtenemos lo mismo, por lo tal, s y t unifican.
+* t does *not match* s
+> No podemos debido a que no se pueden instanciar constante. En este caso estamos intentando hacer que s se convierta en t. Para hacer eso la x → f(z,a), y a → y, pero no podemos modificar las constantes, y a es una constante.
+* s and s|<sub>1</sub> do *not unify*
+> No se puede porque generaría bucle. Instanciariamos z → f(z,a), pero al sustituir tendriamos un bucle ya que z sed transforma en algo que tambien contiene z. Esto se le suele llamar *OCCUR-CHECK*
+* s and f(y,a) do *not unify*
+> No no se pueden hacer dos sustituciones diferentes sobre la misma variable.
+
+
+
