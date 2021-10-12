@@ -244,6 +244,13 @@ A parte de esto es que cuando tienes [x]<sup>A</sup><sub>α</sub>, y sabes su fu
 #### Satisfacción 
 
 An interpretation M satisfies a formula ϕ if there is a valuation mappingα such that [ϕ]<sup>M</sup><sub>α</sub> = true.
+If M satisfies ϕ for *ALL* valuations α, we say that M is a model of ϕ (written M |= ϕ).
+
+> Note that, given M and a sentence ϕ, either M |= ϕ or M |= ¬ϕ holds
+
+An interpretation M is a model of a set of formulas Φ (written M |= Φ) if M is a model of each formula φ in Φ, i.e., for all φ ∈ Φ, we have M |= φ
+
+> Para que la interpretación M sea un model de un conjunto de fórmulas, dicha M tiene que ser modelo de cada fórmula que conforma el conjunto de fórmulas.
 
 ##### Ejemplo diapo 14. 
 
@@ -251,3 +258,44 @@ Let M = (N, F<sub>N</sub>, Π<sub>N</sub>) be such that 0<sup>M</sup> = 0 and x 
 
 
 [x + 0 = x]<sup>M</sup><sub>α</sub>&nbsp;&nbsp;⇔&nbsp;&nbsp;[x + 0]<sup>M</sup><sub>α</sub> =<sub>N</sub> [x]<sup>M</sup><sub>α</sub>&nbsp;&nbsp;⇔&nbsp;&nbsp;[x]<sup>M</sup><sub>α</sub> +<sub>N</sub> [0]<sup>M</sup><sub>α</sub> =<sub>N</sub> α(x)&nbsp;&nbsp;⇔&nbsp;&nbsp;α(x) +<sub>N</sub> 0<sup>M</sup> =<sub>N</sub> 1&nbsp;&nbsp;⇔&nbsp;&nbsp;1 +<sub>N</sub> 0 =<sub>N</sub> 1&nbsp;&nbsp;⇔&nbsp;&nbsp;1 =<sub>N</sub> 1&nbsp;&nbsp;⇔&nbsp;&nbsp;`true`
+
+> Lo primero que hemos hecho ha sido separar la igualación en M sobre los naturales. Al igual que el resto de operadores. Al final llegamos a los numeros separados entre si, que haciendo caso a las propiedades vistas anteriormente y dandote las funciones de validación α para X empiezas a sustituir. Como 1 es igual en los numeros naturales a 1, decimos que esa operacion de x + 0 = x, es true.
+
+Al ser true, podemos afirmar que `M *satisface* x + = x`
+
+En la siguiente diapositiva, cambia el valor de 0 en la interpretacion M a 1, con lo que al repetir todo lo anterior, sale que 2 =<sub>N</sub> 1, con lo es false, con lo que la interpretación M dada, no satisface x + 0 = x
+
+#### Validez
+
+A formula ϕ is valid (write |= ϕ) if every interpretation M is a model of ϕ.
+
+> Es decir, se dice que si te dan una interpretación, y para todas las validaciones α lo satisface, entonces M es modelo de la fórmula. También, si todas las interpretaciones M son modelos de la fórmula, dicha fórmula se considera VÁLIDA.
+
+#### Valid consequence
+
+An interpretation M is a model of a set of formulas Φ (written M |= Φ) if M is a model of each formula φ in Φ, i.e., for all φ ∈ Φ, we have M |= φ
+
+Equivalently, if Φ ∪ {¬ϕ} is unsatisfiable, i.e., Φ ∪ {¬ϕ} has no model.
+
+> Lo último quire decir que si una formula es insatisfactible debido a que no hay interpretación M por la que de true, tampoco tendra modelo, porque para eso debe de satisfacer.
+
+A substitution is a mapping σ : X → T (F, X ). Two expressions e and e' unify if there is a substitution σ (called unifier) such that σ(e) = σ(e').
+
+#### Deducción
+
+Si al aplicar a una formula el mgu σ, que queda la clause vacía, esta se dice que se puede deducir. 
+
+```
+C1 = {isPhilosopher(plato)}
+C2 = {¬isPhilosopher(x), isClever(x)}
+
+Since L1 = isPhilosopher(plato) and ¬L2 = isPhilosopher(x) unify with
+mgu σ = {x 7→ plato}, then R1 = isClever(plato) is the binary resolvent of C1 and C2 upon L1 and L2.
+
+Since R1 = isClever(plato) is a resolvent of C1 and C2 and the empty clause is a (binary) resolvent of R1 and CL where L = ¬ϕ = ¬isClever(plato), we conclude that: 
+
+isClever(plato) is a logical consequence of Φ
+```
+
+
+
