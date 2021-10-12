@@ -189,7 +189,7 @@ El ejemplo de arriba sería un conjunto de set, en este caso 3, que únicamente 
 
 A → B, es lo mismo que ¬A ∨ B, que cuya versión clausal, sería { ¬A,B }.
 
-De noraml los simbolos de función son entendidos como funciones, y los simbolos de predicado como relaciones.
+De normal los simbolos de función son entendidos como funciones, y los simbolos de predicado como relaciones.
 
 #### Evaluation mapping
 
