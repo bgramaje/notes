@@ -171,7 +171,7 @@ t = f(x,a) U σ = {x → f(z,a), y → a)} → σ(l) = f(f(z,a),a)
 * t does *not match* s
 > No podemos debido a que no se pueden instanciar constante. En este caso estamos intentando hacer que s se convierta en t. Para hacer eso la x → f(z,a), y a → y, pero no podemos modificar las constantes, y a es una constante.
 * s and s|<sub>1</sub> do *not unify*
-> No se puede porque generaría bucle. Instanciariamos z → f(z,a), pero al sustituir tendriamos un bucle ya que z sed transforma en algo que tambien contiene z. Esto se le suele llamar *OCCUR-CHECK*
+> No se puede porque generaría bucle. Instanciariamos z → f(z,a), pero al sustituir tendriamos un bucle ya que z sed transforma en algo que tambien contiene z. Esto se le suele llamar *`OCCUR-CHECK`*
 * s and f(y,a) do *not unify*
 > No no se pueden hacer dos sustituciones diferentes sobre la misma variable.
 
