@@ -133,7 +133,7 @@ t|<sub>1</sub> = f(x,a) → se coge todo lo que hay por debajo también!<br>
 
 Y luego nos pueden hacer sustituciones como por ejemplo:
 
-t[b]<sub>1</sub> = f(b,y) → Coger el termino t desde Λ en la primera posicion y cambiarlo por b.
+t[b]<sub>1</sub> = f(b,y) → Coger el termino t desde Λ en la primera posicion y cambiarlo por b. <br>
 t[b]<sub>1</sub>[a]<sub>2</sub> = f(b,a) → Coger el termino t desde Λ en la primera posicion y cambiarlo por b, y coger el termino t en la segunda posicion y cambiarlo por a.
 
 #### Substitutions
