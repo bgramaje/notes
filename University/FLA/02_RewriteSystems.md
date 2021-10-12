@@ -52,9 +52,9 @@ length(cons(x, xs)) → s(length(xs))     (1)
 
 Calcula length(cons(s(s(0)), cons(0, nil)))?
 
-length(cons(s(s(0)), cons(0, nil)))
-→<sub>(1)</sub> s(length(cons(0, nil)))
-→<sub>(1)</sub> s(s(length(nil)))
-→<sub>(0)</sub> s(s(0))
+length(cons(s(s(0)), cons(0, nil))) <br>
+→<sub>(1)</sub> s(length(cons(0, nil)))<br>
+→<sub>(1)</sub> s(s(length(nil)))<br>
+→<sub>(0)</sub> s(s(0))<br>
 
 > Cada flecha dice el número de la regla que hemos usado para reescribir los términos.
