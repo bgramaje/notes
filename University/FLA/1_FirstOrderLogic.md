@@ -250,4 +250,4 @@ An interpretation M satisfies a formula ϕ if there is a valuation mappingα suc
 Let M = (N, F<sub>N</sub>, Π<sub>N</sub>) be such that 0<sup>M</sup> = 0 and x +<sup>M</sup> y = x +<sub>N</sub> y for all x ∈ N. Let =<sup>M</sup> be the equality =<sub>N</sub> over the naturals. Let α(x) = 1. Then,
 
 
-[x + 0 = x]<sup>M</sup><sub>α</sub>     &nbsp;⇔     [x + 0]<sup>M</sup><sub>α</sub> =<sub>N</sub> [x]<sup>M</sup><sub>α</sub>     ⇔     [x]<sup>M</sup><sub>α</sub> +<sub>N</sub> [0]<sup>M</sup><sub>α</sub> =<sub>N</sub> α(x)     ⇔     α(x) +<sub>N</sub> 0<sup>M</sup> =<sub>N</sub> 1     ⇔     1 +<sub>N</sub> 0 =<sub>N</sub> 1     ⇔     1 =<sub>N</sub> 1     ⇔     `true`
+[x + 0 = x]<sup>M</sup><sub>α</sub>&nbsp;&nbsp;⇔&nbsp;&nbsp;[x + 0]<sup>M</sup><sub>α</sub> =<sub>N</sub> [x]<sup>M</sup><sub>α</sub>&nbsp;&nbsp;⇔&nbsp;&nbsp;[x]<sup>M</sup><sub>α</sub> +<sub>N</sub> [0]<sup>M</sup><sub>α</sub> =<sub>N</sub> α(x)&nbsp;&nbsp;⇔&nbsp;&nbsp;α(x) +<sub>N</sub> 0<sup>M</sup> =<sub>N</sub> 1&nbsp;&nbsp;⇔&nbsp;&nbsp;1 +<sub>N</sub> 0 =<sub>N</sub> 1&nbsp;&nbsp;⇔&nbsp;&nbsp;1 =<sub>N</sub> 1&nbsp;&nbsp;⇔&nbsp;&nbsp;`true`
