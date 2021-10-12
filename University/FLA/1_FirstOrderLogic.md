@@ -238,3 +238,16 @@ A parte de esto es que cuando tienes [x]<sup>A</sup><sub>α</sub>, y sabes su fu
 *  (F-Induction2) 
     *  [(∃x) φ]<sup>M</sup><sub>α</sub> = true iff *`THERE IS`* a ∈ D such that [φ]<sup>M</sup><sub>α[x→a]</sub> = true;
     *  [(∀x) φ]<sup>M</sup><sub>α</sub> = true iff *`FOR ALL`* a ∈ D such that [φ]<sup>M</sup><sub>α[x→a]</sub> = true;
+
+> Due to the existence of variables ranging on a domain, the truth value of an atom depends on the semantic domain and valuation mapping.
+
+#### Satisfacción 
+
+An interpretation M satisfies a formula ϕ if there is a valuation mappingα such that [ϕ]<sup>M</sup><sub>α</sub> = true.
+
+##### Ejemplo diapo 14. 
+
+Let M = (N, F<sub>N</sub>, Π<sub>N</sub>) be such that 0<sup>M</sup> = 0 and x +<sup>M</sup> y = x +<sub>N</sub> y for all x ∈ N. Let =<sup>M</sup> be the equality =<sub>N</sub> over the naturals. Let α(x) = 1. Then,
+
+
+[x + 0 = x]<sup>M</sup><sub>α</sub> ⇔ [x + 0]<sup>M</sup><sub>α</sub> =<sub>N</sub> [x]<sup>M</sup><sub>α</sub> ⇔ [x]<sup>M</sup><sub>α</sub> +<sub>N</sub> [0]<sup>M</sup><sub>α</sub> =<sub>N</sub> α(x) ⇔ α(x) +<sub>N</sub> 0<sup>M</sup> =<sub>N</sub> 1 ⇔ 1 +<sub>N</sub> 0 =<sub>N</sub> 1 ⇔ 1 =<sub>N</sub> 1 ⇔ `true`
