@@ -119,12 +119,19 @@ We let t[s]<sub>p</sub> be the term t where t|p has been replaced by s.
 
 For t = f(f(x,a),y) we have Pos(t) = {Λ, 1, 2, 1.1, 1.2}.
 ```
-f(f(x,a),y)    → t<br>
-├─ f           → Λ<br>
-│  ├─ f        → 1<br>
-│  │  ├─ x     → 1.1<br>
-│  │  ├─ a     → 1.1<br>
-│  ├─ y        → 2<br>
+f(f(x,a),y)    → t
+├─ f           → Λ
+│  ├─ f        → 1
+│  │  ├─ x     → 1.1
+│  │  ├─ a     → 1.1
+│  ├─ y        → 2
 ```
 
+t|<sub>Λ</sub> = f(f(x,a),y) 
+t|<sub>1</sub> = f(x,a) → se coge todo lo que hay por debajo también!
+...
 
+Y luego nos pueden hacer sustituciones como por ejemplo:
+
+t[b]<sub>1</sub> = f(b,y) → Coger el termino t desde Λ en la primera posicion y cambiarlo por b.
+t[b]<sub>1</sub>[a]<sub>2</sub> = f(b,a) → Coger el termino t desde Λ en la primera posicion y cambiarlo por b, y coger el termino t en la segunda posicion y cambiarlo por a.
