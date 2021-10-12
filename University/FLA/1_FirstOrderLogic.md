@@ -220,7 +220,7 @@ En referente al siguiente término a evaluar que es [s(s(0))]<sup>A</sup><sub>α
 ##### Diapositiva 12.
 Ejemplo con validación (con variables).
 
-Cuando declara *'x +<sub>A</sub> y = x + y'*, &&  'x multiply <sub>A</sub> y = x'*, para todos x, y ∈ N. Eso significa que la y puede ser z o cualquier otra letra (sin tener en cuenta las de las constantes)? 
+Cuando declara *'x +<sub>A</sub> y = x + y'*, Y *'x multiply <sub>A</sub> y = x'*, para todos x, y ∈ N. Eso significa que la y puede ser z o cualquier otra letra (sin tener en cuenta las de las constantes)? 
 Porque al hacer [x × y]<sup>A</sup><sub>α</sub>, = [x]<sup>A</sup><sub>α</sub>, ya que se cumple que x y y = x, pero cuando lo hace con 'z', también [x × z]<sup>A</sup><sub>α</sub>, = [x]<sup>A</sup><sub>α</sub>
 
 A parte de esto es que cuando tienes [x]<sup>A</sup><sub>α</sub>, y sabes su función de validación, la cual te la dice el enunciado como α(x) = α(y) = 2, eso implica que *[x]<sup>A</sup><sub>α</sub> = α(x) = 2*.
