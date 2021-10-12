@@ -224,3 +224,17 @@ Cuando declara *'x +<sub>A</sub> y = x + y'*, Y *'x multiply <sub>A</sub> y = x'
 Porque al hacer [x × y]<sup>A</sup><sub>α</sub>, = [x]<sup>A</sup><sub>α</sub>, ya que se cumple que x y y = x, pero cuando lo hace con 'z', también [x × z]<sup>A</sup><sub>α</sub>, = [x]<sup>A</sup><sub>α</sub>
 
 A parte de esto es que cuando tienes [x]<sup>A</sup><sub>α</sub>, y sabes su función de validación, la cual te la dice el enunciado como α(x) = α(y) = 2, eso implica que *[x]<sup>A</sup><sub>α</sub> = α(x) = 2*. `(ET-Base1)`
+
+#### Interpretation mapping
+
+<p>A valuation mapping α : X → D, the interpretation mapping [_]<sup>M</sup><sub>α</sub> : Form(Σ, X) → Bool is defined as follows:</p>
+
+*  (F-Base1) [P(t1, . . . ,tk )]<sup>M</sup><sub>α</sub> = true if ([t1]<sup>M</sup><sub>α</sub> , . . . , [tk]<sup>M</sup><sub>α</sub>) ∈ P<sup>M</sup>
+*  (F-Induction1) 
+    * [φ ∧ ψ]<sup>M</sup><sub>α</sub> = true iff [φ]<sup>M</sup><sub>α</sub> = true and [ψ]<sup>M</sup><sub>α</sub> = true;
+    * [φ ∧ ψ]<sup>M</sup><sub>α</sub> = true iff [φ]<sup>M</sup><sub>α</sub> = true and [ψ]<sup>M</sup><sub>α</sub> = true;
+    * [¬φ]<sup>M</sup><sub>α</sub> = true iff [φ]<sup>M</sup><sub>α</sub> = false; 
+    * ... (Son las tablas de verdad de toda la vida, como en matemáticas discretas.)
+*  (F-Induction2) 
+    *  [(∃x) φ]<sup>M</sup><sub>α</sub> = true iff *`THERE IS`* a ∈ D such that [φ]<sup>M</sup><sub>α[x→a]</sub> = true;
+    *  [(∀x) φ]<sup>M</sup><sub>α</sub> = true iff *`FOR ALL`* a ∈ D such that [φ]<sup>M</sup><sub>α[x→a]</sub> = true;
