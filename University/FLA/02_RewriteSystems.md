@@ -155,7 +155,7 @@ A term *`l` matches `t`* if there is a substitution σ (the matcher of t against
 > Matching → Cuando instanciando *UNA* obtenemos la misma función t = σ(l). Unify  → Cuando instanciando *AMBAS* obtenemos la misma función σ(s) = σ(t). *`SOLO SE APLICA A VARIABLES. A CONSTANTES NO!`*
 
 For l = f(x,y), s = f(f(z,a),y), and t = f(x,a), we have:
-> Ejercicio hecho en una hoja de los apuntes, bvien detallado.
+> Ejercicio hecho en una hoja de los apuntes, bien detallado.
 
 * l *matches* both s and t. (s y t se ajustan al patrón de l)
 ```
