@@ -96,11 +96,12 @@ Pos(t) = {Λ} if t ∈ X
 Pos(t) = {Λ} ∪U<sub>1≤i≤k</sub>i.Pos(t<sub>i</sub>) if t = f (t1, . . . ,tk )
 
 > Si el termino es una variable, el conjunto de posiciones va a ser Λ(Λ es la primera posición de arbol) puesto que no hay nada mas. Y si se trata de una función, sera Λ más todo lo que cuelga. En caso de una suma +(x,y) el conjunto de posiciones sería ) {Λ,1,2} dando un arbol parecido así:
-
+```
 +(x,y)    → t<br>
 ├─ +      → Λ<br>
 │  ├─ x   → 1<br>
 │  ├─ y   → 2<br>
+```
 
 Pos(t) = {Λ,1,2}
 
