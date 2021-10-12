@@ -58,3 +58,64 @@ length(cons(s(s(0)), cons(0, nil))) <br>
 →<sub>(0)</sub> s(s(0))<br>
 
 > Cada flecha dice el número de la regla que hemos usado para reescribir los términos.
+
+
+#### Notations on terms
+
+Let `t` be a term.
+
+* Var(t) is the set of variables occurring in `t`
+* If Var(t) = ∅, then we say that `t` is *ground*
+* The set of ground terms is denoted T(F) (rather than T(F, ∅))
+* If t contains no multiple occurrences of the same variable, then `t` is *linear*
+* root(t) is the symbol labelling the root of t
+    * root(t) = t if t ∈ X
+    * root(f (t1, . . . ,tk )) = f if f ∈ F.
+
+> El root de un término es su propio término, root(t) = t if t ∈ X. Al igual que si se tratase de una función root(f(t1, . . . ,tk )) = f if f ∈ F
+
+Dado el ejemplo de un término por ejemplo x + x, que se escribe de noraml +(x,x), su root es +, por root(f(t1, . . . ,tk )) = f if f ∈ F.
+
+Let x,y ∈ X , t = x + x and s = cons(x,cons(y,nil)).
+
+> El término t *NO es lineal* debido a que hay mas de una ocurrencia de una misma variable en el término. t = x + x, con lo que aparece 2 veces la misma variable x, por tanto no es lineal. También sabemos que Var(t) = {x}, Var(s) = {x, y}, root(t) = + y root(s) = cons
+
+#### Terms as trees.
+
+A position p is a (possibly empty) chain of positive integers. The length of a position p is |p|.
+
+```
+p ∈ Pos = {Λ} ∪ {i.q | i ∈ N>0 ∧ q ∈ Pos}
+```
+
+> Simplemente como se nombran en el arbol cada rama, el 'numerito' de 1, 1.1, 1.1.1, ...
+
+The set of positions of a term t is
+
+Pos(t) = {Λ} if t ∈ X
+Pos(t) = {Λ} ∪U<sub>1≤i≤k</sub>i.Pos(t<sub>i</sub>) if t = f (t1, . . . ,tk )
+
+> Si el termino es una variable, el conjunto de posiciones va a ser Λ(Λ es la primera posición de arbol) puesto que no hay nada mas. Y si se trata de una función, sera Λ más todo lo que cuelga. En caso de una suma +(x,y) el conjunto de posiciones sería ) {Λ,1,2} dando un arbol parecido así:
+
++(x,y)    → t
+├─ +      → Λ
+│  ├─ x   → 1
+│  ├─ y   → 2
+
+Pos(t) = {Λ,1,2}
+
+Los subtérminos de t a una determinada posición se representa como t|<sub>p</sub> donde t|<sub>Λ</sub> = t and f (t<sub>1</sub>, . . . ,t<sub>k</sub> )|<sub>i.p</sub> = t<sub>i</sub>|<sub>p</sub>
+
+Básicamente, en el ejemplo anterior t|<sub>Λ</sub> = +(x,y), t|<sub>1</sub> = x, y  t|<sub>2</sub> = y. Se coge todo lo que cuelga por debajo. Es decir si hubiera un subtérmino 1.1, debajo de 1. El subtérmino en la posicion 1, sería el que esta en la posicion 1, Y el que esta en la posicion 1.1.
+
+The depth of subterm s = t|p is the length |p| of p.
+
+> PosF (t) is the set of positions of nonvariable subterms in t
+
+# Subterm replacement.
+
+We let t[s]<sub>p</sub> be the term t where t|p has been replaced by s.
+
+
+
+
