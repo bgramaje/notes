@@ -112,7 +112,7 @@ The depth of subterm s = t|p is the length |p| of p.
 
 > PosF (t) is the set of positions of nonvariable subterms in t
 
-# Subterm replacement.
+#### Subterm replacement.
 
 We let t[s]<sub>p</sub> be the term t where t|p has been replaced by s.
 
