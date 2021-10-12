@@ -97,10 +97,10 @@ Pos(t) = {Λ} ∪U<sub>1≤i≤k</sub>i.Pos(t<sub>i</sub>) if t = f (t1, . . . ,
 
 > Si el termino es una variable, el conjunto de posiciones va a ser Λ(Λ es la primera posición de arbol) puesto que no hay nada mas. Y si se trata de una función, sera Λ más todo lo que cuelga. En caso de una suma +(x,y) el conjunto de posiciones sería ) {Λ,1,2} dando un arbol parecido así:
 ```
-+(x,y)    → t<br>
-├─ +      → Λ<br>
-│  ├─ x   → 1<br>
-│  ├─ y   → 2<br>
++(x,y)    → t
+├─ +      → Λ
+│  ├─ x   → 1
+│  ├─ y   → 2
 ```
 
 Pos(t) = {Λ,1,2}
@@ -118,13 +118,13 @@ The depth of subterm s = t|p is the length |p| of p.
 We let t[s]<sub>p</sub> be the term t where t|p has been replaced by s.
 
 For t = f(f(x,a),y) we have Pos(t) = {Λ, 1, 2, 1.1, 1.2}.
-
+```
 f(f(x,a),y)    → t<br>
 ├─ f           → Λ<br>
 │  ├─ f        → 1<br>
 │  │  ├─ x     → 1.1<br>
 │  │  ├─ a     → 1.1<br>
 │  ├─ y        → 2<br>
-
+```
 
 
