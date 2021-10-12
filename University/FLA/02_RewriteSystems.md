@@ -127,8 +127,8 @@ f(f(x,a),y)    → t
 │  ├─ y        → 2
 ```
 
-t|<sub>Λ</sub> = f(f(x,a),y) 
-t|<sub>1</sub> = f(x,a) → se coge todo lo que hay por debajo también!
+t|<sub>Λ</sub> = f(f(x,a),y) <br>
+t|<sub>1</sub> = f(x,a) → se coge todo lo que hay por debajo también!<br>
 ...
 
 Y luego nos pueden hacer sustituciones como por ejemplo:
