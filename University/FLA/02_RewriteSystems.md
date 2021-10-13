@@ -175,5 +175,79 @@ t = f(x,a) U σ = {x → f(z,a), y → a)} → σ(l) = f(f(z,a),a)
 * s and f(y,a) do *not unify*
 > No no se pueden hacer dos sustituciones diferentes sobre la misma variable.
 
+#### Rewrite Rules
+
+A rewrite rule is an ordered pair l → r, where l,r ∈ T (F, X ) are called the left- and right-hand-sides (lhs and rhs for short), respectively, and:
+* l !∈ X (the left-hand side is not a variable),
+* Var(r) ⊆ Var(`) (there is no extra variable)
+
+> En una regla de reescritura (l → r), la parte izquierda de esta(l), no puede ser una variable o constante. En la parte derecha r, no deben de haber variables extras, y la aridad de las funciones se deben de mantener en las dos partes.
+
+```
+if (true, x, y) → x   → OK
+x → 0 + x             → ERROR (x es una variable en la parte izq, no puede haber solo una variable.)
+```
+
+##### Tipo de rewrite rules
+* *`left-linear`* 
+> Si 'l' es un término lineal. → No hay más de una ocurrencia de una misma variable (p.ej 2 x's), en la parte izquierda.
+* *`right-linear`* 
+> Si 'r' es un término lineal. → No hay más de una ocurrencia de una misma variable (p.ej 2 x's), en la parte derecha.
+* *`linear`* 
+> Si 'l' y 'r' son lineales. → No hay más de una ocurrencia de una misma variable (p.ej 2 x's), en ninguna de las dos partes.
+* *`colapsante/collapsing`* → if r ∈ X. 
+> Si la parte derecha es una variable. La parte izq *NO* puede ser una variable, pero la parte derecha *SÍ*
+* *`duplicante`* 
+> Si la variable 'x' o cualquiera, tiene más ocurrencias en la parte derecha r que en la parte izquiera l. 
+> Si es *`linear`*  o *`right-linear`* , no puede ser duplicante.
+* *`duplicante`* 
+> Si la variable 'x' o cualquiera, tiene más ocurrencias en la parte derecha r que en la parte izquiera l. 
+* *`conservative/conservativa`* → Var(l) = Var(r). 
+> Si ambas partes tienen las mismas variables
+* *`destructiva`* → Var(l) ⊃ Var(r). 
+> ? Si l contiene las variables de r pero r no las de l.
+
+#### Term Rewriting System
+
+A Term Rewriting System (TRS) is a pair R = (F, R) such that F is a signature and R is a set of rewrite rules over the signature F.
+
+#### Redex 
+
+An instance σ(l) of the left-hand side l of a rule l → r is called a redex ('red'ucible 'ex'pression) of the rule.
+
+> Un redex es cualquier instancia que has cambiado de l con lo del σ = {...} 
+
+```
+from(x) → x : from(s(x))
+t1 = from(zero) *σ = {x → zero}*
+y su PosR(t1) = {Λ, 1}
+*t1 is a redex of the above rule*
+```
+> PosR es el conjunto de posiciones del redex. Donde cambiamos los valores.
+
+A Term Rewriting System R = (F, R) is called:
+
+* *`left-linear`* 
+* *`right-linear`* 
+* *`linear`* 
+* *`conservative/conservativa`*
+
+if *`EACH`* rule has the corresponding property.
+
+> *`TODAS`* las reglas del sistema han de tener la propiedad para ser llamada de algo de arriba. Si es left-linear, todas las reglas son left-linear, etc...
+
+On the other hand:
+
+* *`collapsing`* 
+* *`duplicating`* 
+
+if *`AT LEAST ONE`* rule has the corresponding property.
+
+> *`CON UNA`* de las reglas con una de las propiedades de arriba sobra para hablar de que todo el sistema entero tiene esa propiedad.
 
 
+#### Normal form
+
+Let R = (F, R) be a TRS and t ∈ T (F, X ). We say that t is an R-normal form (or just a normal form if R is clear from the context) if no rewriting step is possible on t (equivalently, if t contains no redex of R).
+
+> t es una forma normal, si no se puede aplicar ninguna regla de reescritura sobre el. Es decir, no contiene ningún Redex.
