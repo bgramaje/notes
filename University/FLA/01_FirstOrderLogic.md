@@ -273,7 +273,7 @@ If M satisfies ϕ for *ALL* valuations α, we say that M is a model of ϕ (writt
 
 An interpretation M is a model of a set of formulas Φ (written M |= Φ) if M is a model of each formula φ in Φ, i.e., for all φ ∈ Φ, we have M |= φ
 
-> Para que la interpretación M sea un model de un conjunto de fórmulas, dicha M tiene que ser modelo de cada fórmula que conforma el conjunto de fórmulas.
+> Para que la interpretación M sea un model de un conjunto de fórmulas, dicha M tiene que satisfacir cada fórmula que conforma el conjunto de fórmulas.
 
 ##### Ejemplo diapo 14. 
 
@@ -284,7 +284,7 @@ Let M = (N, F<sub>N</sub>, Π<sub>N</sub>) be such that 0<sup>M</sup> = 0 and x 
 
 > Lo primero que hemos hecho ha sido separar la igualación en M sobre los naturales. Al igual que el resto de operadores. Al final llegamos a los numeros separados entre si, que haciendo caso a las propiedades vistas anteriormente y dandote las funciones de validación α para X empiezas a sustituir. Como 1 es igual en los numeros naturales a 1, decimos que esa operacion de x + 0 = x, es true.
 
-Al ser true, podemos afirmar que `M *satisface* x + = x`
+Al ser true, podemos afirmar que `M *satisface* x + 0 = x`
 
 En la siguiente diapositiva, cambia el valor de 0 en la interpretacion M a 1, con lo que al repetir todo lo anterior, sale que 2 =<sub>N</sub> 1, con lo es false, con lo que la interpretación M dada, no satisface x + 0 = x
 
@@ -292,7 +292,7 @@ En la siguiente diapositiva, cambia el valor de 0 en la interpretacion M a 1, co
 
 A formula ϕ is valid (write |= ϕ) if every interpretation M is a model of ϕ.
 
-> Es decir, se dice que si te dan una interpretación, y para todas las validaciones α lo satisface, entonces M es modelo de la fórmula. También, si todas las interpretaciones M son modelos de la fórmula, dicha fórmula se considera VÁLIDA.
+> Es decir, se dice que si te dan una interpretación, y para todas las validaciones α lo satisface, entonces M es modelo de la fórmula. También, si todas las interpretaciones M son modelos de la fórmula, dicha fórmula se considera VÁLIDA, es decir, que si M es un modelo de la fórmula, la fórmula es valida.
 
 #### Valid consequence
 

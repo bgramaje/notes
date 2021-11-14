@@ -21,7 +21,7 @@ length(cons(s(s(0)), cons(0, nil))) →∗ s(s(0))
 > Decimos que el length declarado de arriba, se sobreescribe en uno o más pasos (*) en s(s(0)), que es el número 2 representado en notación de Peano.
 
 #### Como hacer un rewrite system.
-* The transformations are introduced by means of a set R of rewrite rules ` → r, where ` and r are terms. We call R a Term Rewriting System. The rules are treated as axioms of the form. (∀~x) ` → r. 
+* The transformations are introduced by means of a set R of rewrite rules l → r, where l and r are terms. We call R a Term Rewriting System. The rules are treated as axioms of the form. (∀x) l → r. 
 > Donde ~x, contiene las variables de l y r,  y → is a binary predicate. En el caso anterior, l = length(cons(s(s(0)), cons(0, nil))), y r = s(s(0)), siendo ambos términos como dice la teoría.
 * The one-step rewriting steps are propagated into the syntactic structure of terms by means of axioms
 * Predicate →∗ representing many-step (i.e., zero or more) computations is given the following axioms*
@@ -30,7 +30,7 @@ length(cons(s(s(0)), cons(0, nil))) →∗ s(s(0))
 
 Given a Term Rewriting System R, the set of axioms obtained in this way (which is a first-order theory) is denoted as R- (R barrita arriba)
 
-Un ejejmplo de un TRS(Term Rewriting System) es: 
+Un ejemplo de un TRS(Term Rewriting System) es: 
 
 ```
 length(nil) → 0
@@ -49,6 +49,8 @@ Entonces dado el siguiente TRS:
 length(nil) → 0                         (0)
 length(cons(x, xs)) → s(length(xs))     (1)
 ``` 
+ 
+> Acordarse que todas las reglas en un TRS, todas las variables de cada regla se encuentran implicamente universalmente cuantificadas!
 
 Calcula length(cons(s(s(0)), cons(0, nil)))?
 
@@ -74,11 +76,11 @@ Let `t` be a term.
 
 > El root de un término es su propio término, root(t) = t if t ∈ X. Al igual que si se tratase de una función root(f(t1, . . . ,tk )) = f if f ∈ F
 
-Dado el ejemplo de un término por ejemplo x + x, que se escribe de noraml +(x,x), su root es +, por root(f(t1, . . . ,tk )) = f if f ∈ F.
+Dado el ejemplo de un término por ejemplo x + x, que se escribe de normal, sin el azucar sintáctico como +(x,x); su root es +, por root(f(t1, . . . ,tk )) = f if f ∈ F.
 
 Let x,y ∈ X , t = x + x and s = cons(x,cons(y,nil)).
 
-> El término t *NO es lineal* debido a que hay mas de una ocurrencia de una misma variable en el término. t = x + x, con lo que aparece 2 veces la misma variable x, por tanto no es lineal. También sabemos que Var(t) = {x}, Var(s) = {x, y}, root(t) = + y root(s) = cons
+> El término t *NO es lineal* debido a que hay mas de una ocurrencia de una misma variable en el término. t = x + x, con lo que aparece 2 veces la misma variable x, por tanto no es lineal. El término s *SI es lineal*, por que su Var(s), no se repite mas de una vez, solo existe una única x e y en el término. También sabemos que Var(t) = {x}, Var(s) = {x, y}, root(t) = + y root(s) = cons
 
 #### Terms as trees.
 
@@ -92,7 +94,7 @@ p ∈ Pos = {Λ} ∪ {i.q | i ∈ N>0 ∧ q ∈ Pos}
 
 The set of positions of a term t is
 
-Pos(t) = {Λ} if t ∈ X
+Pos(t) = {Λ} if t ∈ X <br>
 Pos(t) = {Λ} ∪U<sub>1≤i≤k</sub>i.Pos(t<sub>i</sub>) if t = f (t1, . . . ,tk )
 
 > Si el termino es una variable, el conjunto de posiciones va a ser Λ(Λ es la primera posición de arbol) puesto que no hay nada mas. Y si se trata de una función, sera Λ más todo lo que cuelga. En caso de una suma +(x,y) el conjunto de posiciones sería ) {Λ,1,2} dando un arbol parecido así:
@@ -147,11 +149,11 @@ Se declara de la siguiente manera:
 
 σ = {x<sub>1</sub> → t<sub>1</sub>, . . . , x<sub>n</sub> → t<sub>n</sub>}.
 
-> The identity or empty substitution is written ε (note that Dom(ε) = ∅).
+> The identity or empty substitution is written ε (note that Dom(ε) = ∅), cuando hacemos una sustitución vacía aplicando una regla de reescritura.
 
 #### Matching, unification
 
-A term *`l` matches `t`* if there is a substitution σ (the matcher of t against`) such that t = σ(l). Two terms *`s` and `t` unify* if there is a substitution σ (a unifier of s and t) such that σ(s) = σ(t).
+A term *`l` matches `t`* if there is a substitution σ (the matcher of t against) such that t = σ(l). Two terms *`s` and `t` unify* if there is a substitution σ (a unifier of s and t) such that σ(s) = σ(t).
 
 > Matching → Cuando instanciando *UNA* obtenemos la misma función t = σ(l). Unify  → Cuando instanciando *AMBAS* obtenemos la misma función σ(s) = σ(t). *`SOLO SE APLICA A VARIABLES. A CONSTANTES NO!`*
 
