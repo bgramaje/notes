@@ -23,6 +23,7 @@ mod Arithmetics is
     op _+_ : Numbers Numbers -> Numbers . *** Binary operator
 endm
 ```
+> Sintaxis en formato MAUDE.
 
 * El `sort` es como el tipo de este. Si pensasemos en programación serían las tipicas variables de programacion: entero;char;string.
 * El `op` es usado para declarar el operador, en el caso de arriba hay dos.
@@ -51,7 +52,7 @@ El operador `_+_`, tiene una aridad de dos, puesto admite dos argumentos, de tip
 
 ##### Constantes
 
-Cuando antes de la -> en la parte izquierda, no hay declarado nada, con lo que no admite ningun argumento y su aridad es 0, significa que se trata de una constante.
+Cuando antes de la -> en la parte izquierda, no hay declarado nada, con lo que no admite ningun argumento por lo cual su aridad es 0, significa que se trata de una constante.
 
 ```
 op 0 : -> Numbers . *** Constant
@@ -60,6 +61,8 @@ op 0 : -> Numbers . *** Constant
 #### Logic Signature
 
 Se trata de una pareja de  Σ = (F, Π), donde F es una signature de `function symbols` y Π una signature de `predicate symbols`. A signature σ consists of a set of constant symbols, a set of function symbols and a set of predicate symbols. Each function and predicate symbol has an arity k > 0.
+
+> Se refiere a que la unión de funciones predicativas y funciones lógicas, se le llama una `Logic Signature`.
 
 
 ##### Simbolos de predicado
@@ -80,9 +83,9 @@ endm
 * Las operaciones `isClever`, `teacherOf`, `isPhilosopher`, `colleagues` son un símbolo de predicado.
 * `Monadic`, significa un operadior unario, de un solo argumento en griego? 
 * `homer`,  `plato`, `socrates`, son constantes puesto que no tienen ningún indice de aridad (lo de la parte izq de la ->).
-* `colleagues` se trata de una operacion binaria puesto que tiene una aridad de 2 (2 argumentos).
+* `colleagues`, `teacherOf` se trata de una operacion binaria puesto que tiene una aridad de 2 (2 argumentos).
 
-Los predicados no son términos, sino fórmulas.
+> Los predicados no son términos, sino fórmulas.
 
 #### Términos (Terms)
 
@@ -102,13 +105,29 @@ Los términos son definidos como:
 
 The set of terms is denoted as `T(F,X)` | `(also T(Σ, X))`.
 
+> *`T(F,X)`*, significa los términos de una signatura de funciones normales*, ya que, ¡los simbolos de predicado NO son términos! como las vistas anteriormente respecto a un conjunto de variables X (x,y,z...)
+
+* Funciones normales: 
+
+```
+mod Arithmetics is
+    sort Numbers .
+    op 0 : -> Numbers . *** Constant
+    op _+_ : Numbers Numbers -> Numbers . *** Binary operator
+endm
+```
+
+> En este caso de *`mod Arithmetics`*, 0 es un término, puesto las constantes son términos (*`T-Base2`*), y el opersfot '_+_', es un término (*`T-Induction`*), ya que sus parametros son términos, ya que son variables (*`T-Base1`*).
+
 ##### Terms - Use
 
 *  `Arithmetic expressions ` : x + (y + z), x × y + x × z, x + 0.
-*  `Data structures` : Numbers n are represented in Peano’s notation as sn(0) (only two symbols are necessary: 0 and s!).
-*  `Function calls` : 2+1 (or s(s(0)) + s(0)) represents a call to the addition operator.
-*  `Assignments` : counter := 3 is a term: ‘:=’ is a `binary symbol` ; counterand 3 are constant symbols.
-*  `Conditional statements` : if n > 0 then n := n-1 else n := n+1 is a term: ‘if’ is a ternary symbol, > is a binary operator,
+*  `Data structures` : Numbers n are represented in *`Peano’s notation`* as s<sup>n</sup>(0) (only two symbols are necessary: 0 and s!) (s!, que seran tantas sucesiones de 0, como varible queramos representar.).
+*  `Function calls` : 2 + 1 or *s(s(0)) + s(0)*, represents a call to the addition operator.
+*  `Assignments` : counter := 3 is a term: ‘:=’ is a `binary symbol` ; counter and 3 are constant symbols. (*op _:=_ *, representación del operador con aridad 2)
+*  `Conditional statements` : if n > 0 then n := n-1 else n := n+1 is a term: *`‘if’ is a ternary symbol, '>' is a binary operator`*
+
+> *if_then_else_* = ar(if) = 3; *_>_* = ar(>) = 2.
 
 Las operaciones aritméticas son terminos. Los numeros, se representan como sucesiones de Peano. Las llamadas a las funciones, sus parámetros tambien se hacen con las sucesiones de Peano, si estos son números. Las asignaciones son un símbolo binario, `binary symbol`.
 
@@ -123,13 +142,13 @@ Los condicionales siguen de normal lo siguiente:
 *Suponiendo: if n > 0 then n := n-1 else n := n+1*, donde el If es un símbolo ternario, cuya aridad es 3, y el <> es un simbolo bínaro, cuya aridad es 2 (`_<>_`)
 
 ```
-if_then_else : Bool Int Int -> Int
+if_then_else_ : Bool Int Int -> Int
 ```
 
-Con lo que si se supone que se usa lo siguiente: *if n > 0 then n := 0*, este NO es un término debido a que no presenta la aridad 3, al faltar el else. Y el *+1* tampoco, por que la asignación de un valor a una variable es de aridad 2: `_:=_`
+Con lo que si se supone que se usa lo siguiente: *if n > 0 then n := 0*, este NO es un término debido a que no presenta la aridad 3, al faltar el else. Y el *+1* tampoco, por que la asignación de un valor a una variable es de aridad 2: `_:=_`. Deben de seguirse de la estructura de arriba para que se consideren términos, es decir, si no son redexes de la regla, no son términos.
 
 ###### Sucesion de Peano
-Únicamente dos símbolos 0 y S! ¿Porqué?
+Únicamente dos símbolos(términos) 0 y S! (s!, que seran tantas sucesiones de 0, como varible queramos representar, y el 0 para empezar la base. 0 es una constante por lo cual es un término (*`T-Base1`*), y s() es una funcion que su argumento es un término, por lo cual esta tambien es un término (*`T-Induction`*)).
 
 ```
 0 = 0

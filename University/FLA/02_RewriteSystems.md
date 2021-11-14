@@ -111,7 +111,8 @@ Básicamente, en el ejemplo anterior t|<sub>Λ</sub> = +(x,y), t|<sub>1</sub> = 
 
 The depth of subterm s = t|p is the length |p| of p.
 
-> PosF (t) is the set of positions of nonvariable subterms in t
+Pos<sub>F<sub>(t) is the set of positions of nonvariable subterms in t.
+> *`PosF(t)`* es el conjunto de t que no varía, es decir, las funciones y constantes. O hay algo más?
 
 #### Subterm replacement.
 
