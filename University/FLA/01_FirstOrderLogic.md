@@ -171,9 +171,11 @@ Los fórmulas son definidas como:
 
 *[ES]*
 
-* `F-Base1` - Si un predicado P de aridad K, todos sus argumentos son términos t1,.....,tl. Entonces P(t1,.....,tk) es una fórmula. tambien llamada como `átomo`
-* `F-Induction1` - Si φ and φ' are formulas, entonces φ ∧ φ' y ¬φ (and also φ ∨ φ', φ ⇒ φ',...) son formulas, es decir, cualquier operacion de AND;OR;NOT:XOR:etc, sobre dos formulas, tambien es una fórmula.
+* `F-Base1` - Si un predicado P de aridad K, todos sus argumentos son términos t1,.....,tl. Entonces P(t1,.....,tk) es una fórmula. tambien llamada como `átomo`.
+* `F-Induction1` - Si φ and φ' are formulas, entonces φ ∧ φ' y ¬φ (and also φ ∨ φ', φ ⇒ φ',...) son formulas, es decir, cualquier operacion de AND;OR;NOT;XOR;etc, sobre dos fórmulas, tambien es una fórmula.
 * `F-Induction2` - Si x es una variable y φ es una fórmula, entonces (∀x) φ y (∃x) φ son formulas. 
+
+> El conjunto de fórmulas es representado como: *`Form(Σ, X)`*
 
 #### Sentence 
 *[EN]* A sentence is a well-formed formula whose variables are all quantified.
@@ -187,9 +189,11 @@ isPhilosopher(socrates)
 (∀x)(∀y) colleagues(x, y) ⇒ colleagues(y, x)
 ```
 
-* isPhilosopher(socrates) es una fórmula; puesto que socrates es una variable que se ha declarado anteriormente, con lo que es un término, y al tratarse de un predicado por que devuelve un boolean, y todos los parámetros respecto a su aridad son términos, este predicado a su vez es una fórmula. `F-Base1`
+* isPhilosopher(socrates) es una fórmula; puesto que socrates es una variable que se ha declarado anteriormente, con lo que es un término, y al tratarse de un predicado por que devuelve un boolean, y todos los parámetros respecto a su aridad son términos, este predicado a su vez es una fórmula. *`F-Base1`*
 
 * (∀x) isPhilosopher(x) ⇒ isClever(x) se trata de una fórmula, puesto que philosopher es un predicado cuyo parametro (la variable x) es un término, con lo que para  (∀x) φ  es tambien una fórmula `F-Induction2`. 
+    * Tambien por `F-Induction1`, puesto que isPhilosopher(x) es una fórmula y isClever(x) es otra fórmula, entonces cualquier operacion lógica sobre estas es a su vez una fórmula.
+
 > En este caso tambien se trata de una sentece?, puesto que todas las variables que participan en esta fórmula estan cuantificadas.
 
 #### Literals and Clauses
@@ -208,7 +212,7 @@ El ejemplo de arriba sería un conjunto de set, en este caso 3, que únicamente 
 
 A → B, es lo mismo que ¬A ∨ B, que cuya versión clausal, sería { ¬A,B }.
 
-De normal los simbolos de función son entendidos como funciones, y los simbolos de predicado como relaciones.
+> De normal los simbolos de función son entendidos como funciones, y los simbolos de predicado como relaciones.
 
 #### Evaluation mapping
 
@@ -229,9 +233,9 @@ El primer caso es 0, puesto que al tener aridad 0 se trata de una constante, y s
 En referente al siguiente término a evaluar que es [s(s(0))]<sup>A</sup><sub>α</sub>, eso según la regla de `ET-Induction`, eso es igual a s<sup>A</sup>([s(0)]<sup>A</sup><sub>α</sub>). Como en la regla nos dice que s<sup>A</sup>(x) = x + 1, y nosotros tenemos s<sup>A</sup>(x) siendo x el valor: ([s(0)]<sup>A</sup><sub>α</sub>), eso será igual a ([s(0)]<sup>A</sup><sub>α</sub>) + 1 y siguiendo la lógica
 
 * [ s ( s(0) )]<sup>A</sup><sub>α</sub> → s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>) *`aplicando ET-Induction`* <br>   
-* s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>) → ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1 *`aplicando la igualdad de` s<sup>A</sup>(x) = x + 1, siendo x el s(0)* <br> 
+* s<sup>A</sup>([ s(0) ]<sup>A</sup><sub>α</sub>) → ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1 *`aplicando la igualdad de` s<sup>A</sup>(x) = x + 1, siendo x el [ s(0) ]<sup>A</sup><sub>α</sub>* <br> 
 * ([ s(0) ]<sup>A</sup><sub>α</sub>) + 1 → s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>) *`aplicando ET-Induction`* <br>
-* s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>); → ([0]<sup>A</sup><sub>α</sub> + 1) + 1 *`aplicando la igualdad de` s<sup>A</sup>(x) = x + 1, siendo x el 0*<br>
+* s<sup>A</sup>([(0)]<sup>A</sup><sub>α</sub>); → ([0]<sup>A</sup><sub>α</sub> + 1) + 1 *`aplicando la igualdad de` s<sup>A</sup>(x) = x + 1, siendo x el [0]<sup>A</sup><sub>α</sub>*<br>
 * ([0]<sup>A</sup><sub>α</sub> + 1) + 1 → (0<sup>A</sup> + 1) + 1 *`aplicando ET-Base2, puesto que 0 es una constante al tener aridad 0` [0]<sup>A</sup><sub>α</sub> = 0<sup>A</sup><br>*
 * (0<sup>A</sup> + 1) + 1 → (0 + 1) + 1 *`aplicando la igualdad de` 0<sup>A</sup>* = 0<br> 
 * (0 + 1) + 1 → 2 *`aplicando ya la suma normal y corriente`*<br>
