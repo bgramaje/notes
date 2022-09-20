@@ -8,7 +8,7 @@ Para instalar la librería, se hace uso de [*`npm`*](https://www.npmjs.com/) *(n
 $ npm install express --save
 ```
 
-#### Typescript
+- #### Typescript
 
 Para poder usara la librería de Express en Typescript hay que instalar los tipados de esta librería mediante el siguiente comando:
 ```bash
