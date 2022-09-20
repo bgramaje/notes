@@ -1,6 +1,5 @@
 ### 👨‍🏫 Express.js 
 > Infraestructura web rápida, minimalista y flexible para Node.js
-<br/>
 
 ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
 
