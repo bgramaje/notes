@@ -13,21 +13,28 @@ $ npm install express --save
 ```bash
 .
 ├── ...
-├── api         # Api directorty
-│   ├── config    # Spring Java Framework notes.
+├── api     # Api directorty
+│   ├── config      # Config directory with specific configuration for the api
 │   │   └── ...
-│   ├── controllers    # Spring Java Framework notes.
+│   ├── controllers # Controllers directory with all controllers in the api.
 │   │   └── ...
-│   ├── middlewares    # Spring Java Framework notes.
+│   ├── middlewares # Middlewares used such as routes with token authentication
 │   │   └── ...
-│   ├── routes    # Spring Java Framework notes.
+│   ├── routes      # Routes directory with all routes in the api.
 │   │   └── ...
-│   ├── services    # Spring Java Framework notes.
+│   ├── services    # Services directory with all the services in the api.
 │   │   └── ...
-│   ├── utils    # Spring Java Framework notes.
+│   ├── utils       # Utils directory
 │   │   └── ...
-│   ├── app.ts
-│   ├── index.ts
+│   ├── app.ts      # app.ts file declaration where the express app is created
+│   ├── index.ts    # index.ts file that works as a start-point of the app.
+├── .env.pre        # Environment variables for `preproduction` stage
+├── .env.prod       # Environment variables for `production` stage
+├── .env.dev        # Environment variables for `development` stage
+├── .env.local      # Environment variables for `local` stage
+├── package.json    # package.json file
+├── tsconfig.json   # tsconfig.json file with configurations to compile the .ts files into .js
+├── .gitignore      # .gitignore file to ignore the folders we do not want to upload to github.
 └── ...
 ```
 
