@@ -8,10 +8,17 @@ Para instalar la librería, se hace uso de [*`npm`*](https://www.npmjs.com/) *(n
 $ npm install express --save
 ```
 
-#### :evergreen_tree: Express.js directory schema
+#### Typescript
+
+Para poder usara la librería de Express en Typescript hay que instalar los tipados de esta librería mediante el siguiente comando:
+```bash
+$ npm install --save @types/express
+```
+
+#### :evergreen_tree: Folder tree
 
 ```bash
-.
+./
 ├── ...
 ├── api     # Api directorty
 │   ├── config      # Config directory with specific configuration for the api
@@ -38,3 +45,4 @@ $ npm install express --save
 └── ...
 ```
 
+####  
