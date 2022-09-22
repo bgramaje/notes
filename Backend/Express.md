@@ -4,8 +4,11 @@
 ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
 
 ### Índice
-1. [Instalación](#Instalación)
-2. [Estructura](#Estructura)
+1. [Instalación](#instalación)
+2. [Estructura](#open_file_folder-estructura)
+3. [Recursos](#paperclip-recursos)
+    * [:page_facing_up: *`index.ts`*](#page_facing_up-index.ts)
+
 
 ### Instalación
 
@@ -21,7 +24,7 @@ Para poder usar la librería de Express en Typescript hay que instalar los tipad
 $ npm install --save @types/express
 ```
 
-#### :evergreen_tree: Estructura
+### :open_file_folder: Estructura
 
 ```bash
 ./
@@ -51,8 +54,9 @@ $ npm install --save @types/express
 ├── .gitignore      # .gitignore file to ignore the folders we do not want to upload to github.
 └── ...
 ```
+### :paperclip: Recursos
 
-#### index.ts
+#### :page_facing_up: *`index.ts`*
 
 Este fichero es el *`entrypoint`* a ejecutar para levantar todo el servicio REST API que vamos a utilizar. En este fichero se levante el servidor http escuchando por el puerto que le hemos indicado.
 
