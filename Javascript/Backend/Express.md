@@ -1,4 +1,4 @@
-### 👨‍🏫 Express.js [:es:]
+### 👨‍🏫 Express.js :es:
 > Infraestructura web rápida, minimalista y flexible para Node.js
 
 ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
@@ -67,7 +67,7 @@ Este fichero es el *`entrypoint`* a ejecutar para levantar todo el servicio REST
 
 > Aqui es donde antes de arrancar el servidor deberiamos de conectarnos a la BBDD (SQL, NoSQL, etc...) si es que usamos una. Por tal de asegurarnos de que antes de arrancar la API estamos conectados a la base de datos correspondiente para poder servir los datos solicitados.
 
-```javascript
+```typescript
 import server from "./server";
 //obtenemos el puerto y el host a partir de las variables de entorno. Si estas no estan definidas, se obtiene por defecto el puerto 5000 y el host '0.0.0.0'
 const PORT = parseInt(process.env.PORT!) || 5000;
@@ -85,7 +85,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 
 El fichero contiene el servidor http generado en node conteniendo la app de express para luego cargar todo tema de rutas y controladores generados en express
 
-```javascript
+```typescript
 import http from 'http';
 import app from './app';
 //crear el servidor http contenido con la app de express importada de 'app.ts'
@@ -96,7 +96,7 @@ export default server;
 
 * #### :page_facing_up: *`app.ts`*
 
-```javascript
+```typescript
 //importamos express
 import express, { Request, Response } from "express";
 //importamos las rutas de la api
@@ -147,7 +147,7 @@ export default app;
 
         Fichero donde declaramos de manera centralizada todos las URIS para poder acceder a los recursos.
 
-        ```javascript
+        ```typescript
         export const HOME = '/'
         export const RESOURCE = '/resource'
         ```
@@ -162,7 +162,7 @@ export default app;
 
         Fichero donde generamos el router de un recurso en específico identificado en el nombre del fichero. En el caso de *`resource.routes.ts`* el recurso en cuestion es *`resource`*
 
-        ```javascript
+        ```typescript
         //importamos express y los tipados de 'Response', 'Request' y 'NextFunction'
         import express, { Response, Request, NextFunction } from "express";
         //importamos el asyncHandler
@@ -177,6 +177,7 @@ export default app;
                 controller.get(req, res, next);
             }
         ));
+
         //exportamos el router
         export { router as RESOURCE };
         ```
@@ -185,7 +186,7 @@ export default app;
 
         Fichero donde importamos todos los router para facilitar la posterior importación.
 
-        ```javascript
+        ```typescript
         export  { RESOURCE } from ".resource.routes";
         // asi sucesivamente con todos los que hagamos...
         ```
@@ -200,7 +201,7 @@ export default app;
 
         Fichero donde generamos el *`controller`* de un recurso en específico identificado en el nombre del fichero. En el caso de *`resource.controller.ts`* el recurso en cuestion es *`resource`*
 
-        ```javascript
+        ```typescript
         import * as service from "../service/resource.service";
         export const get = async (req: Request, res: Response, next: NextFunction) => {
             try {
@@ -225,7 +226,7 @@ export default app;
 
         Fichero donde generamos el *`service`* de un recurso en específico identificado en el nombre del fichero. En el caso de *`resource.service.ts`* el recurso en cuestion es *`resource`*
 
-        ```javascript
+        ```typescript
         export const get = async (req: Request, res: Response, next: NextFunction) => {
             //listar los datos del recurso RESOURCE de BBDD.
         }
@@ -238,5 +239,74 @@ export default app;
         Directorio donde generamos y exportamos los middlewares. Se tratan de funciones intermedias que dependiendo de su programación, normalmente antes de hacer la peticion o después, realizar "algo". Por ejemplo, si queremos 
 
         Generamos los services con esta nomenclatura `x.middleware.ts` 
+
+        * ##### Lógica de middelwares con el *`app.ts`*
+
+            ```typescript
+            //importamos express y los tipados de 'Response', 'Request' y 'NextFunction'
+            import express, { Response, Request, NextFunction } from "express";
+
+            // Si ponemos el middleware aquí significa que antes de acceder al router del recurso solicitado, ejecutaremos el middleware. Este mediante la función 'next()', hará que sigamos el flujo del programa programado en `app.ts`.
+            app.use((req: Request, res: Response, next: NextFunction) => {
+                /* middleware1 ... */
+            })  //aquí se ha ejecutado middleware1
+            
+            app.use(Routes.RESOURCE, Routers.RESOURCE);
+            app.use(/*...*/)
+
+            // Si ponemos el middleware aquí significa que el recurso solicitado se encuentra en los routers de arriba 'app.use(/*...*/), ...', el hilo del programa no llegará nunca a ejecutar dicho middleware.
+            app.use((req: Request, res: Response, next: NextFunction) => {
+                /* middleware2 ... */
+            })  //aquí se ha ejecutado middleware1, middleware2
+
+            app.post(/*...*/)
+            app.put(/*...*/)
+            app.delete(/*...*/)    
+            
+            // Si ponemos el middleware nunca se llegará a ejecutar, solo cuando no encuentre un recurso que hayamos solicitado. Este es una buena práctica para poder programar un middleware cuando se intenta acceder a un recurso inexistente.
+            app.use((req: Request, res: Response, next: NextFunction) => {
+                /* middleware3 ... */
+            })  //aquí se ha ejecutado middleware1, middleware2, middleware3
+
+            ```
+
+        * ###### Middleware para comprobar token si esta presente en la peticion
+
+            Normalmente se protegen endpoints de la api a partir de la generacion de tokens. Estos son generadors cuando el usuario hace un login y este se guarda el token de 'acceso'. A la hora de hacer peticiones nos tienen el usuario que enviar por un http header el token. Normalmente van en la cabecera de `authorization` y es comunmente conocido como *`bearer token`*
+
+            ```typescript
+            //función para obtener el token
+            export const retrieveToken = async (req: Request, res: Response, next: NextFunction) => {
+                const bearerHeader = <string>req.headers['authorization'];
+                const token = bearerHeader && bearerHeader.split(' ')[1];
+                //si no tenemos token, entonces el usuario no puede seguir al recurso solicitado y se le envia un status FORBBIDEN.
+                if (!token) return res.status(403).send({ message: 'No token provided.' })
+                //continuamos con la llamada. Esto lo que hace es que seguimos la ejecución del flow de `app.ts`, y pasaríamos a buscar el endpoint solicitado o iríamos a otro middleware. Todo depende de lo que se haya programado.
+                next();
+            }
+            ```
+
+            Si metemos este middleware, para poder proteger determinadas endpoints, solo deberíamos de importarlo en el *`app.ts`* anteriormente a todos los endpoints que queremos privatizar y despues de los endpoints que queramos dejar públicos.
+
+            ```typescript
+            import * as middleware from './middlewares/'
+            //endpoint PUBLICO sin necesidad de token para poder realizar esta llamada al endpoint 
+            app.get(Routes.HOME, (req: Request, res: Response) => {
+                res.json({
+                    message: "👋🌎",
+                });
+            });
+            //middleware para obtener el token. Si no hay token en la petición HTTP, entonces devolvemos un /*return res.status(403).send({ message: 'No token provided.' })*/
+            app.use(middleware.retrieveToken)
+            //a partir de aquí significa que todo lo que vaya por debajo del middleware de retrieveToken, para poder ser llamado, hace falta que pasemos un token en la petición HTTP.
+            app.use(Routes.RESOURCE, Routers.RESOURCE);
+            ```
+
       
+* #### Variables de entorno
+
+
+* #### Error Handler
+* #### Custom logger
+
 
