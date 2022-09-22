@@ -6,25 +6,28 @@
 ### Índice
 1. [Instalación](#instalación)
 2. [Estructura](#open_file_folder-estructura)
-3. [Recursos](#paperclip-recursos)
+3. [:paperclip: Recursos](#paperclip-recursos)
     * [:page_facing_up: *`index.ts`*](#page_facing_up-indexts)
+    * [:page_facing_up: *`server.ts`*](#page_facing_up-serverts)
+    * [:page_facing_up: *`app.ts`*](#page_facing_up-appts)
 
 
-### Instalación
+
+#### Instalación
 
 Para instalar la librería, se hace uso de [*`npm`*](https://www.npmjs.com/) *(node package manager)*
 ```bash
 $ npm install express --save
 ```
 
-- #### Typescript
+- ##### Typescript
 
 Para poder usar la librería de Express en Typescript hay que instalar los tipados de esta librería mediante el siguiente comando:
 ```bash
 $ npm install --save @types/express
 ```
 
-### :open_file_folder: Estructura
+#### :open_file_folder: Estructura
 
 ```bash
 ./
@@ -54,7 +57,7 @@ $ npm install --save @types/express
 ├── .gitignore      # .gitignore file to ignore the folders we do not want to upload to github.
 └── ...
 ```
-### :paperclip: Recursos
+#### :paperclip: Recursos
 
 * #### :page_facing_up: *`index.ts`*
 
@@ -74,7 +77,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 })();
 ```
 
-#### server.ts
+* #### :page_facing_up: *`server.ts`*
 
 El fichero contiene el servidor http generado en node conteniendo la app de express para luego cargar todo tema de rutas y controladores generados en express
 
@@ -87,7 +90,7 @@ const server = http.createServer(app);
 export default server;
 ```
 
-#### app.ts
+* #### :page_facing_up: *`app.ts`*
 
 ```javascript
 import express, { Request, Response } from "express";
