@@ -1,4 +1,4 @@
-### 👨‍🏫 Express.js
+### 👨‍🏫 Express.js [:es:]
 > Infraestructura web rápida, minimalista y flexible para Node.js
 
 ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
@@ -116,7 +116,7 @@ app.use(express.json());
 //para comprimir el cuerpo de la respuesta
 app.use(compression());
 
-//declaración de ruta en el fichero `app.ts`
+//declaración de endpoint en el fichero `app.ts`
 //Routes.HOME es la URI con la que identificamos el recurso al que queremos acceder.
 app.get(Routes.HOME, (req: Request, res: Response) => {
   res.json({
@@ -151,5 +151,40 @@ export default app;
         export const RESOURCE = '/resource'
         ```
 
+    * ##### :open_file_folder: *`routers`*
+
+        Directorio donde generamos y exportamos los routers. Estos son los encargados de cuando matchee la string que pasamos por URL al servidor, identificarla y ejecutar lo que queramos ejecutar dependiendo del recurso al que accedamos.
+
+        Generamos los routers con esta nomenclatura `resource.routes.ts`  y a su vez generamos un fichero *`index.ts`*, el cual es el encargado de exportar todos los routers y poder realizar una posterior importación mas sencilla.
+      
+        * ##### :page_facing_up: *`routes.ts`*
+
+        Fichero donde generamos el router de un recurso en específico identificado en el nombre del fichero. En el caso de *`resource.routes.ts`* el recurso en cuestion es *`resource`*
+
+        ```javascript
+        //importamos express y los tipados de 'Response', 'Request' y 'NextFunction'
+        import express, { Response, Request, NextFunction } from "express";
+        //importamos el asyncHandler
+        import asyncHandler from "express-async-handler";
+        //generamos el router
+        const router = express.Router();
+        //declaración de endpoint en el router de resource. Hay que tener en cuenta que este router, todas los endpoints que pongamos, vienen predefinidos con el string creado en el fichero `routes.ts` identificando el recurso. En este caso en eldpoint no es solo '/get', sino '/resource/get'
+        router.get('/get', asyncHandler(
+            async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+                controller.doSomething(req, res, next);
+            }
+        ));
+        //exportamos el router
+        export { router as RESOURCE };
+        ```
+
+        * ##### :page_facing_up: *`index.ts`*
+
+        Fichero donde importamos todos los router para facilitar la posterior importación.
+
+        ```javascript
+        export  { RESOURCE } from ".resource.routes";
+        // asi sucesivamente con todos los que hagamos...
+        ```
 
 #### :pushpin: Variables de entorno
