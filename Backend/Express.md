@@ -7,7 +7,7 @@
 1. [Instalación](#instalación)
 2. [Estructura](#open_file_folder-estructura)
 3. [Recursos](#paperclip-recursos)
-    * [:page_facing_up: *`index.ts`*](#page_facing_up-index.ts)
+    * [:page_facing_up: *`index.ts`*](#page_facing_up-indexts)
 
 
 ### Instalación
@@ -56,7 +56,7 @@ $ npm install --save @types/express
 ```
 ### :paperclip: Recursos
 
-#### :page_facing_up: *`index.ts`*
+* #### :page_facing_up: *`index.ts`*
 
 Este fichero es el *`entrypoint`* a ejecutar para levantar todo el servicio REST API que vamos a utilizar. En este fichero se levante el servidor http escuchando por el puerto que le hemos indicado.
 
