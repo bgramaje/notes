@@ -32,7 +32,7 @@ $ npm install --save @types/express
 ```markdown
 ./
 ├── src
-│   ├── :open_file_folder: api               # Api directorty
+│   ├── api               # Api directorty
 │   │   ├── config        # Config directory with specific configuration for the api
 │   │   │   ├── routes.ts # File where al routes are saved in a centrralized way  
 │   │   │   └── ...
@@ -127,7 +127,6 @@ app.get(Routes.HOME, (req: Request, res: Response) => {
 //linkeamos el router `RESOURCE` declarado de manera externa en otro fichero con la URI que hemos generado.
 app.use(Routes.RESOURCE, Routers.RESOURCE);
 
-
 export default app;
 ```
 
@@ -138,7 +137,19 @@ export default app;
     Directorio donde se almacena todo en referente el servicio *`REST API`*, donde se almacenan los *`controllers`*, *`routers`*, *`services`*, *`middlewares`*, *`utils`* y la *`config`*.
 
     * ##### :open_file_folder: *`config`*
+
+        Directorio donde almacenamos toda la configuración necesaria para la API. De normal se almacenan las URI's de manera centralizada en el fichero *`routes.ts`*, las cuales identifican los recursos a los que intentamos acceder. A su vez se pueden almacenar otras configuraciones en referentes a seguridad, generacion de jsonwebtokens y demás.
+
+        > Cuando se usan sockets, tambien se pueden guardar las URI's de estos sockets en este directorio.
+
         * ##### :page_facing_up: *`routes.ts`*
+
+        Fichero donde declaramos de manera centralizada todos las URIS para poder acceder a los recursos.
+
+        ```javascript
+        export const HOME = '/'
+        export const RESOURCE = '/resource'
+        ```
 
 
 #### :pushpin: Variables de entorno
