@@ -31,21 +31,21 @@ $ npm install --save @types/express
 
 ```bash
 ./
-├── ...
-├── api               # Api directorty
-│   ├── config        # Config directory with specific configuration for the api
-│   │   ├── routes.ts # File where al routes are saved in a centrralized way  
-│   │   └── ...
-│   ├── controllers   # Controllers directory with all controllers in the api.
-│   │   └── ...
-│   ├── middlewares   # Middlewares used such as routes with token authentication
-│   │   └── ...
-│   ├── routes        # Routes directory with all routes in the api.
-│   │   └── ...
-│   ├── services      # Services directory with all the services in the api.
-│   │   └── ...
-│   ├── utils         # Utils directory
-│   │   └── ...
+├── src
+│   ├── :open_file_folder: api               # Api directorty
+│   │   ├── config        # Config directory with specific configuration for the api
+│   │   │   ├── routes.ts # File where al routes are saved in a centrralized way  
+│   │   │   └── ...
+│   │   ├── controllers   # Controllers directory with all controllers in the api.
+│   │   │   └── ...
+│   │   ├── middlewares   # Middlewares used such as routes with token authentication
+│   │   │   └── ...
+│   │   ├── routes        # Routes directory with all routes in the api.
+│   │   │   └── ...
+│   │   ├── services      # Services directory with all the services in the api.
+│   │   │   └── ...
+│   │   ├── utils         # Utils directory
+│   │   │   └── ...
 │   ├── app.ts        # app.ts file declaration where the express app is created
 │   ├── index.ts      # index.ts file that works as a start-point of the app.
 │   └── server.ts     # server.ts file that contains de http server wrapped with the express `app`
@@ -134,6 +134,9 @@ export default app;
 > La compresión de gzip *`app.use(compression());`* puede disminuir significativamente el tamaño del cuerpo de respuesta y, por lo tanto, aumentar la velocidad de una aplicación web. 
 
 * #### :open_file_folder: *`api`*
+
+    Directorio donde se almacena todo en referente el servicio *`REST API`*, donde se almacenan los *`controllers`*, *`routers`*, *`services`*, *`middlewares`*, *`utils`* y la *`config`*.
+
     * ##### :open_file_folder: *`config`*
         * ##### :page_facing_up: *`routes.ts`*
 
