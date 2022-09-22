@@ -32,29 +32,30 @@ $ npm install --save @types/express
 ```bash
 ./
 ├── ...
-├── api     # Api directorty
-│   ├── config      # Config directory with specific configuration for the api
+├── api               # Api directorty
+│   ├── config        # Config directory with specific configuration for the api
+│   │   ├── routes.ts # File where al routes are saved in a centrralized way  
 │   │   └── ...
-│   ├── controllers # Controllers directory with all controllers in the api.
+│   ├── controllers   # Controllers directory with all controllers in the api.
 │   │   └── ...
-│   ├── middlewares # Middlewares used such as routes with token authentication
+│   ├── middlewares   # Middlewares used such as routes with token authentication
 │   │   └── ...
-│   ├── routes      # Routes directory with all routes in the api.
+│   ├── routes        # Routes directory with all routes in the api.
 │   │   └── ...
-│   ├── services    # Services directory with all the services in the api.
+│   ├── services      # Services directory with all the services in the api.
 │   │   └── ...
-│   ├── utils       # Utils directory
+│   ├── utils         # Utils directory
 │   │   └── ...
-│   ├── app.ts      # app.ts file declaration where the express app is created
-│   ├── index.ts    # index.ts file that works as a start-point of the app.
-│   └── server.ts    # server.ts file that contains de http server wrapped with the express `app`
-├── .env.pre        # Environment variables for `preproduction` stage
-├── .env.prod       # Environment variables for `production` stage
-├── .env.dev        # Environment variables for `development` stage
-├── .env.local      # Environment variables for `local` stage
-├── package.json    # package.json file
-├── tsconfig.json   # tsconfig.json file with configurations to compile the .ts files into .js
-├── .gitignore      # .gitignore file to ignore the folders we do not want to upload to github.
+│   ├── app.ts        # app.ts file declaration where the express app is created
+│   ├── index.ts      # index.ts file that works as a start-point of the app.
+│   └── server.ts     # server.ts file that contains de http server wrapped with the express `app`
+├── .env.pre          # Environment variables for `preproduction` stage
+├── .env.prod         # Environment variables for `production` stage
+├── .env.dev          # Environment variables for `development` stage
+├── .env.local        # Environment variables for `local` stage
+├── package.json      # package.json file
+├── tsconfig.json     # tsconfig.json file with configurations to compile the .ts files into .js
+├── .gitignore        # .gitignore file to ignore the folders we do not want to upload to github.
 └── ...
 ```
 #### :paperclip: Recursos
@@ -63,12 +64,14 @@ $ npm install --save @types/express
 
 Este fichero es el *`entrypoint`* a ejecutar para levantar todo el servicio REST API que vamos a utilizar. En este fichero se levante el servidor http escuchando por el puerto que le hemos indicado.
 
+> Aqui es donde antes de arrancar el servidor deberiamos de conectarnos a la BBDD (SQL, NoSQL, etc...) si es que usamos una. Por tal de asegurarnos de que antes de arrancar la API estamos conectados a la base de datos correspondiente para poder servir los datos solicitados.
+
 ```javascript
 import server from "./server";
 //obtenemos el puerto y el host a partir de las variables de entorno. Si estas no estan definidas, se obtiene por defecto el puerto 5000 y el host '0.0.0.0'
 const PORT = parseInt(process.env.PORT!) || 5000;
 const HOST = process.env.HOST || '0.0.0.0';
-
+//declarada async por si necesitamos hacer la conexion a BBDD antes de arrancar el servicio REST API.
 (async () => {
     //arrancamos el servidor. Cuando este arranca mostramos un mensaje por consola afirmando que ha arrancado de manera satisfactoria
     server.listen(PORT, HOST, () => {
@@ -93,8 +96,46 @@ export default server;
 * #### :page_facing_up: *`app.ts`*
 
 ```javascript
+//importamos express
 import express, { Request, Response } from "express";
+//importamos las rutas de la api
+import * as Routes from "./api/config/routes";
+//importamos las routes de la api
+import * as Routers from "./api/routes/index";
 //declaramos el app con el constructor de express para poder arrancar luego el servidor.
 const app = express();
+//morgan middlware para loggear en consola las distintas llamadas realizadas a recursos a la API
+app.use(morgan('dev'));
+//ayuda a securizar nuestra aplicacion mediante distintas cabeceras HTTP
+app.use(helmet());
+//deshabilitamos este campo de las respuestas con cabeceras HTTP, para poder ocultar en posibles ataques, cual es la tecnología que estamos usando
+//x-powered-by : express
+app.disable('x-powered-by')
+app.use(cors());
+app.use(express.json());
+//para comprimir el cuerpo de la respuesta
+app.use(compression());
 
+//declaración de ruta en el fichero `app.ts`
+//Routes.HOME es la URI con la que identificamos el recurso al que queremos acceder.
+app.get(Routes.HOME, (req: Request, res: Response) => {
+  res.json({
+    message: "👋🌎",
+  });
+});
+
+//linkeamos el router `RESOURCE` declarado de manera externa en otro fichero con la URI que hemos generado.
+app.use(Routes.RESOURCE, Routers.RESOURCE);
+
+
+export default app;
 ```
+
+> La compresión de gzip *`app.use(compression());`* puede disminuir significativamente el tamaño del cuerpo de respuesta y, por lo tanto, aumentar la velocidad de una aplicación web. 
+
+* #### :open_file_folder: *`api`*
+    * ##### :open_file_folder: *`config`*
+        * ##### :page_facing_up: *`routes.ts`*
+
+
+#### :pushpin: Variables de entorno
