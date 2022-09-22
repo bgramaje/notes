@@ -3,7 +3,7 @@
 
 ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
 
-### Índice
+#### :pushpin: Índice
 1. [Instalación](#instalación)
 2. [Estructura](#open_file_folder-estructura)
 3. [:paperclip: Recursos](#paperclip-recursos)
