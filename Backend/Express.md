@@ -29,7 +29,7 @@ $ npm install --save @types/express
 
 #### :open_file_folder: Estructura
 
-```bash
+```markdown
 ./
 ├── src
 │   ├── :open_file_folder: api               # Api directorty
