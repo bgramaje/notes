@@ -58,6 +58,7 @@ $ npm install --save @types/express
 ├── .gitignore        # .gitignore file to ignore the folders we do not want to upload to github.
 └── ...
 ```
+
 #### :paperclip: Recursos
 
 * #### :page_facing_up: *`index.ts`*
@@ -157,7 +158,7 @@ export default app;
 
         Generamos los routers con esta nomenclatura `resource.routes.ts`  y a su vez generamos un fichero *`index.ts`*, el cual es el encargado de exportar todos los routers y poder realizar una posterior importación mas sencilla.
       
-        * ##### :page_facing_up: *`routes.ts`*
+        * ##### :page_facing_up: *`resource.routes.ts`*
 
         Fichero donde generamos el router de un recurso en específico identificado en el nombre del fichero. En el caso de *`resource.routes.ts`* el recurso en cuestion es *`resource`*
 
@@ -166,12 +167,14 @@ export default app;
         import express, { Response, Request, NextFunction } from "express";
         //importamos el asyncHandler
         import asyncHandler from "express-async-handler";
+        //importamos el controller
+        import * as controller from "../cotroller/resource.controller";
         //generamos el router
         const router = express.Router();
         //declaración de endpoint en el router de resource. Hay que tener en cuenta que este router, todas los endpoints que pongamos, vienen predefinidos con el string creado en el fichero `routes.ts` identificando el recurso. En este caso en eldpoint no es solo '/get', sino '/resource/get'
         router.get('/get', asyncHandler(
             async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-                controller.doSomething(req, res, next);
+                controller.get(req, res, next);
             }
         ));
         //exportamos el router
@@ -187,4 +190,46 @@ export default app;
         // asi sucesivamente con todos los que hagamos...
         ```
 
-#### :pushpin: Variables de entorno
+    * ##### :open_file_folder: *`controllers`*
+
+        Directorio donde generamos y exportamos los controllers. Estos son los encargados de llevar la lógica de aplicacion/negocio de la api y son tambien los encargados de llamar a los services para acceder a los datos alojados en base de datos
+
+        Generamos los controllers con esta nomenclatura `resource.controller.ts` 
+      
+        * ##### :page_facing_up: *`resource.controller.ts`*
+
+        Fichero donde generamos el *`controller`* de un recurso en específico identificado en el nombre del fichero. En el caso de *`resource.controller.ts`* el recurso en cuestion es *`resource`*
+
+        ```javascript
+        import * as service from "../service/resource.service";
+        export const get = async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const data: any | null = await service.get();
+                return res.status(200).send(data);
+            } catch (error) {
+                console.log(error)
+                //next({ error: error, entity: "PANTALLA", typeRequest: req.method, method: "list" });
+            }
+        }
+        ```
+
+        > Capturamos el error a través de un try/catch puesto que estamos en un método asíncrono usando un await. Con esto evitamos que ante un posible error, la API no deje de dar servicio.
+
+    * ##### :open_file_folder: *`services`*
+
+        Directorio donde generamos y exportamos los services. Estos son los encargados de acceder a los datos almacenados en BBDD. Es decir, son encargados de hacer las llamadas pertinentes a BBDD para obtener los datos.
+
+        Generamos los services con esta nomenclatura `resource.service.ts` 
+      
+        * ##### :page_facing_up: *`resource.service.ts`*
+
+        Fichero donde generamos el *`service`* de un recurso en específico identificado en el nombre del fichero. En el caso de *`resource.service.ts`* el recurso en cuestion es *`resource`*
+
+        ```javascript
+        export const get = async (req: Request, res: Response, next: NextFunction) => {
+            //listar los datos del recurso RESOURCE de BBDD.
+        }
+        ```
+
+        > Capturamos el error a través de un try/catch puesto que estamos en un método asíncrono usando un await. Con esto evitamos que ante un posible error, la API no deje de dar servicio.
+
