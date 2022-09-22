@@ -233,3 +233,10 @@ export default app;
 
         > Capturamos el error a través de un try/catch puesto que estamos en un método asíncrono usando un await. Con esto evitamos que ante un posible error, la API no deje de dar servicio.
 
+    * ##### :open_file_folder: *`middlewares`*
+
+        Directorio donde generamos y exportamos los middlewares. Se tratan de funciones intermedias que dependiendo de su programación, normalmente antes de hacer la peticion o después, realizar "algo". Por ejemplo, si queremos 
+
+        Generamos los services con esta nomenclatura `x.middleware.ts` 
+      
+
