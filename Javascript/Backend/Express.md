@@ -326,7 +326,9 @@ export default app;
 
             app.use(middleware.notFound)
             app.use(Routes.RESOURCE, Routers.RESOURCE);
-            //se pone al final del app.ts, puesto que es cuando no ha entrado a ningun router ni a las rutas declaradas sobre app.ts, entonces significa que el hilo de ejecución sigue en activo y no ha llegado a ningun return de los endpoints. Por tanto significa que no ha encontrado ningun endpoint sobre la URL de la petición enviada, y hay que devolver un notFound.
+            //se pone al final del app.ts, puesto que es cuando no ha entrado a ningun router ni a las rutas declaradas sobre app.ts, 
+            //entonces significa que el hilo de ejecución sigue en activo y no ha llegado a ningun return de los endpoints.
+            //Por tanto significa que no ha encontrado ningun endpoint sobre la URL de la petición enviada, y hay que devolver un notFound.
             app.use(middleware.notFound)
             ```
       
