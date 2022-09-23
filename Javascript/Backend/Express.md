@@ -104,6 +104,11 @@ export default server;
 ```typescript
 //importamos express
 import express, { Request, Response } from "express";
+//importamos librerías externas
+import helmet from "helmet";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import compression from "compression";
 //importamos las rutas de la api
 import * as Routes from "./api/config/routes";
 //importamos las routes de la api
@@ -172,12 +177,20 @@ export default app;
         import express, { Response, Request, NextFunction } from "express";
         //importamos el asyncHandler
         import asyncHandler from "express-async-handler";
+        import * as middlewares from "../middlewares/";
         //importamos el controller
         import * as controller from "../cotroller/resource.controller";
         //generamos el router
         const router = express.Router();
         //declaración de endpoint en el router de resource. Hay que tener en cuenta que este router, todas los endpoints que pongamos, vienen predefinidos con el string creado en el fichero `routes.ts` identificando el recurso. En este caso en eldpoint no es solo '/get', sino '/resource/get'
         router.get('/get', asyncHandler(
+            async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+                controller.get(req, res, next);
+            }
+        ));
+
+        //en este caso de la ruta si queremos entrar al '/resource/get/admin', debemos de ejecutar antes en el array de middlewares que tenemos, los middlewares que le hemos indicado. Entonces antes de entrar a hacer la llamada del controller, ejecutaremos el middlewares.isAdmin. Si este nos devuelve el next podremos continuar con la petición. Si no lo hace, significa que no somos admins y no tenemos permiso para acceder a ese endpoint del recurso solicitado.
+        router.get('/get/admin', [middlewares.isAdmin], asyncHandler(
             async (req: Request, res: Response, next: NextFunction): Promise<void> => {
                 controller.get(req, res, next);
             }
@@ -336,7 +349,35 @@ export default app;
             //Por tanto significa que no ha encontrado ningun endpoint sobre la URL de la petición enviada, y hay que devolver un notFound.
             app.use(middleware.notFound)
             ```
-      
+
+* #### `Request` de Express
+
+Podemos re-declarar el objeto de *`request`* de Express.js, para poder guardar en ella el token con el que se ha usado, o el usuario quien es de nuestra base de datos, la ip sobre la que nos está haciendo la petición, el rol que tiene el usuario que esta haciendo la petición, a la hora de poder servir nuestros datos o no, etc... 
+
+> Esto es una buena práctica porque podemos hacer una única peticion a la BBDD y llamarla úna unica vez para saber quien soy, en vez de en cada controller/service ir haciendo un getUsuario etc...
+
+> Para controlar el rol y saber a que tiene acceso y a que no, también es recomendable la creación de un middleware
+
+```typescript
+import * as middleware from './middlewares/'
+declare global {
+    namespace Express {
+        /**
+         * @interface Request
+         * added new properties to request from express 
+         * to store new data
+         */
+        interface Request {
+            user: string
+            token: string,
+            ipClient: string
+            rol: string,
+        }
+    }
+}
+
+```
+
 * #### Variables de entorno
 
 
