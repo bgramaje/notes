@@ -387,30 +387,41 @@ declare global {
 
     > Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env
 
-    * ##### Installation
+    * ##### Instalación
 
     ```bash
     # install locally (recommended)
     npm install dotenv --save
     ```
 
-    * ##### Stages
+    * ##### Entornos
 
-    Esto ya es recomendación mía y luego hay que tener en cuenta el despliegue de esto, pero yo recomiendo 4 entornos.
-    1. *`local`*, entorno el cual nosotros estamos programando en nuestro equipo de uso diario.
-    2. *`development`*, entorno el cual el equipo sube el código de todos y se comprueba el correcto funcionamiento
-    3. *`preproduction`*, entorno previo al de producción donde se le indica al cliente que es un entorno de pruebas, para que pueda sobre una base de datos de pruebas, probar el producto, si satisface sus necesidades y requerimientos.
-    4. *`production`*, entorno final de producción, donde todo el software ha sido validado y dado el OK a su despliegue.
+        Esto ya es recomendación mía y luego hay que tener en cuenta el despliegue de esto, pero yo recomiendo 4 entornos.
+        1. *`local`*, entorno el cual nosotros estamos programando en nuestro equipo de uso diario.
+        2. *`development`*, entorno el cual el equipo sube el código de todos y se comprueba el correcto funcionamiento
+        3. *`preproduction`*, entorno previo al de producción donde se le indica al cliente que es un entorno de pruebas, para que pueda sobre una base de datos de pruebas, probar el producto, si satisface sus necesidades y requerimientos.
+        4. *`production`*, entorno final de producción, donde todo el software ha sido validado y dado el OK a su despliegue.
+        
 
-    ```markdown
-    .
-    ├── ...
-    ├── .env.pre          # Environment variables for `preproduction` stage
-    ├── .env.prod         # Environment variables for `production` stage
-    ├── .env.dev          # Environment variables for `development` stage
-    ├── .env.local        # Environment variables for `local` stage
-    └── ...
-    ```
+        ```markdown
+        .
+        ├── ...
+        ├── .env.pre          # Environment variables for `preproduction` stage
+        ├── .env.prod         # Environment variables for `production` stage
+        ├── .env.dev          # Environment variables for `development` stage
+        ├── .env.local        # Environment variables for `local` stage
+        └── ...
+        ```
+
+    * ##### Acceder a datos del dotenv en el código
+
+        Para acceder a los datos almacenados en los ficheros de entorno, únicamente nos basta con llamarlos como `process.env.DATABASE_URI`, si quisieramos obtener el valor de `DATABASE_URI`. Este debe de estar generado en todos los .env de los distintos entornos sino podría saltar una excepción de `undefined`.
+
+        Cada fichero del entorno puede apuntar a una `DATABASE_URI`distinta. De ahí la gracia de tener distintos entornos.
+
+        Para que nuestro programa lo reconozca el `process.env.DATABASE_URI`, tenemos que lanzar la siguiente secuencia de comandos cuando arrancamos la api, que veremos en la seccion de 'scripts'
+
+    * ##### Scripts
 
 
 
