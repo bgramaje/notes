@@ -437,7 +437,7 @@ declare global {
         Luego en el *`package.json`* declararemos los siguientes comandos en la sección de `scripts`.
 
         ```json
-            scripts": {
+        scripts": {
             "build": "rimraf ./build && tsc",
             "local": "dotenv -e .env.local -- nodemon -r dotenv/config src/index.ts",
             "{{ ENV }}": "dotenv -e .env.{{ ENV }} -- node -r dotenv/config build/index.js",
@@ -450,7 +450,7 @@ declare global {
         Sino la otra manera sería hacer lo siguiente:
 
         ```json
-            scripts": {
+        scripts": {
             "build": "rimraf ./build && tsc",
             "local": "dotenv -e .env.local -- nodemon -r dotenv/config src/index.ts",
             "dev": "dotenv -e .env.dev -- node -r dotenv/config build/index.js",
