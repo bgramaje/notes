@@ -401,7 +401,9 @@ declare global {
         2. *`development`*, entorno el cual el equipo sube el código de todos y se comprueba el correcto funcionamiento
         3. *`preproduction`*, entorno previo al de producción donde se le indica al cliente que es un entorno de pruebas, para que pueda sobre una base de datos de pruebas, probar el producto, si satisface sus necesidades y requerimientos.
         4. *`production`*, entorno final de producción, donde todo el software ha sido validado y dado el OK a su despliegue.
+        
         <br/>
+
         ```markdown
         .
         ├── ...
