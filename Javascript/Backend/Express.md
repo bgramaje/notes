@@ -406,6 +406,7 @@ next(error)
 Definiremos un error handler de la siguiente manera: 
 
 ```typescript
+import express, { Response, Request, NextFunction } from "express";
 const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     //devolvemos un objeto con informacion sobre el error
     const body = {
@@ -422,7 +423,11 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
 Entonces al pasarle un error por parámetro, nos saltará al error handler.
 
 ```typescript
+//importamos express y los tipados de 'Response', 'Request' y 'NextFunction'
+import express, { Response, Request, NextFunction } from "express";
 import * as middleware from './middlewares/'
+
+const app = express();
 //middleware para obtener el token. Si no hay token en la petición HTTP, entonces devolvemos un /*return res.status(403).send({ message: 'No token provided.' })*/
 app.use(middleware.retrieveToken)
 //a partir de aquí significa que todo lo que vaya por debajo del middleware de retrieveToken, para poder ser llamado, hace falta que pasemos un token en la petición HTTP.
