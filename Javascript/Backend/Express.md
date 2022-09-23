@@ -432,9 +432,6 @@ app.use(middleware.notFound)
 app.use(middleware.errorHandler)
 ```
 
-
 * #### Custom logger
-
-* #### :lock: *`jwt`* 'JSON Web Tokens' 
 
 
