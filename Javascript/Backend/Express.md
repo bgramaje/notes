@@ -189,7 +189,9 @@ export default app;
             }
         ));
 
-        //en este caso de la ruta si queremos entrar al '/resource/get/admin', debemos de ejecutar antes en el array de middlewares que tenemos, los middlewares que le hemos indicado. Entonces antes de entrar a hacer la llamada del controller, ejecutaremos el middlewares.isAdmin. Si este nos devuelve el next podremos continuar con la petición. Si no lo hace, significa que no somos admins y no tenemos permiso para acceder a ese endpoint del recurso solicitado.
+        //en este caso de la ruta si queremos entrar al '/resource/get/admin', debemos de ejecutar antes en el array de middlewares que tenemos, los middlewares que le hemos indicado. 
+        //Entonces antes de entrar a hacer la llamada del controller, ejecutaremos el middlewares.isAdmin. Si este nos devuelve el next podremos continuar con la petición. 
+        //Si no lo hace, significa que no somos admins y no tenemos permiso para acceder a ese endpoint del recurso solicitado.
         router.get('/get/admin', [middlewares.isAdmin], asyncHandler(
             async (req: Request, res: Response, next: NextFunction): Promise<void> => {
                 controller.get(req, res, next);
