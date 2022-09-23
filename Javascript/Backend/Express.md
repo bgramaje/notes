@@ -384,6 +384,8 @@ declare global {
 
 Express viene por defecto con un error handler ya predefinido. Este es el típico que te envia un estado de http a 500 y te devuelve una página HTML con el error. Nosotros, podemos crear y definir nuestro propio error handler. 
 
+> Express will stop using its default error handler once you create a custom error handler. To handle an error, you need to communicate with the frontend that’s requesting the endpoint.
+
 Para crear un error handler, simplemente tenemos que crear una función con 4 argumentos:
 
 ```typescript
@@ -430,9 +432,6 @@ app.use(middleware.notFound)
 app.use(middleware.errorHandler)
 ```
 
-
-1. error: El error que le vamos a pasar al handler
-2. req: 
 
 * #### Custom logger
 
