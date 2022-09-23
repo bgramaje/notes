@@ -10,9 +10,14 @@
     * [:page_facing_up: *`index.ts`*](#page_facing_up-indexts)
     * [:page_facing_up: *`server.ts`*](#page_facing_up-serverts)
     * [:page_facing_up: *`app.ts`*](#page_facing_up-appts)
+    * [:open_file_folder: *`api`*](#open_file_folder-api)
+        * [:open_file_folder: *`config`*](#open_file_folder-config)
+        * [:open_file_folder: *`routers`*](#open_file_folder-routers)
+        * [:open_file_folder: *`controllers`*](#open_file_folder-controllers)
+        * [:open_file_folder: *`services`*](#open_file_folder-services)
+        * [:open_file_folder: *`middlewares`*](#open_file_folder-middlewares)
 
-
-
+        
 #### Instalación
 
 Para instalar la librería, se hace uso de [*`npm`*](https://www.npmjs.com/) *(node package manager)*
