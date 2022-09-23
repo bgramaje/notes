@@ -459,9 +459,11 @@ declare global {
             "start": "npm run local"
         },
         ```
+        Estos comandos lo que hacen es arrancar el servicio API, pero pillando como variable de entornos el fichero en específico de su stage.
+
         También hay que observar la diferencia entre el comando `local` con los otros 3. El local ejecuta la versión typescript sin compilar de nuestro código que estamos programando. Mientras que los otros comandos de los distintos entornos ejecutan el javascript compilado que proviene del typescript. Es decir, despues de hacer el `npm run build` podemos ejecutar los comandos `npm run pre` || `npm run prod` || `npm run dev`.
 
-
+        > En la versión local hacemos uso de la librería *`nodemos`*, se trata de una librería que nos permice hacer `hot reload`, es decir cada vez que nosotros añadimos codigo y lo guardamos el fichero, este nos re-arranca la api sin la necesidad de nosotros tener que parar la API y volver a arrancarla.
 
 
 * #### :lock: *`jwt`* 'JSON Web Tokens' 
