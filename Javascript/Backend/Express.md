@@ -270,7 +270,7 @@ export default app;
 
             ```
 
-        * ###### Middleware para comprobar token si esta presente en la peticion
+        * ###### Middleware para comprobar token si esta presente en la petición
 
             Normalmente se protegen endpoints de la api a partir de la generacion de tokens. Estos son generadors cuando el usuario hace un login y este se guarda el token de 'acceso'. A la hora de hacer peticiones nos tienen el usuario que enviar por un http header el token. Normalmente van en la cabecera de `authorization` y es comunmente conocido como *`bearer token`*
 
@@ -301,7 +301,34 @@ export default app;
             //a partir de aquí significa que todo lo que vaya por debajo del middleware de retrieveToken, para poder ser llamado, hace falta que pasemos un token en la petición HTTP.
             app.use(Routes.RESOURCE, Routers.RESOURCE);
             ```
+        * ###### Middleware para crear un error cuando accede a un endpoint que no existe
 
+           Cuando se intenta acceder a un recurso/endpoint que no es creado, se debé de crear un error advirtiendo al usuario de `not found`, estableciendoe el código de error HTTP según el estandard de `404`. 
+
+            ```typescript
+                const notFound = (req: Request, res: Response, next: NextFunction) => {
+                    res.status(404); //extablecemos el 404 de not found.
+                    const error = new Error(`🔍 - Not Found - ${req.originalUrl}`); //creamos un error con un mensaje predefinido
+                    next(error) //nos envia al error handler predefinido por Express
+                };
+            }
+            ```
+
+            A la hora de colocar e importar el middleware este, debe ir al final del fichero `app.ts`, ya que solo llegarán  al final del fichero aquellas peticiones que no hagan match con ningún endpoint predefinido en la API.
+
+            ```typescript
+            import * as middleware from './middlewares/'
+            app.get(Routes.HOME, (req: Request, res: Response) => {
+                res.json({
+                    message: "👋🌎",
+                });
+            });
+
+            app.use(middleware.notFound)
+            app.use(Routes.RESOURCE, Routers.RESOURCE);
+            //se pone al final del app.ts, puesto que es cuando no ha entrado a ningun router ni a las rutas declaradas sobre app.ts, entonces significa que el hilo de ejecución sigue en activo y no ha llegado a ningun return de los endpoints. Por tanto significa que no ha encontrado ningun endpoint sobre la URL de la petición enviada, y hay que devolver un notFound.
+            app.use(middleware.notFound)
+            ```
       
 * #### Variables de entorno
 
