@@ -382,6 +382,58 @@ declare global {
 
 * #### Error Handler
 
+Express viene por defecto con un error handler ya predefinido. Este es el típico que te envia un estado de http a 500 y te devuelve una página HTML con el error. Nosotros, podemos crear y definir nuestro propio error handler. 
+
+Para crear un error handler, simplemente tenemos que crear una función con 4 argumentos:
+
+```typescript
+/**
+ * @param err typeof Error 
+ * @param req typeof Request
+ * @param res typeof Response
+ * @param next typeof NextFunction
+ */
+```
+
+Y colocarlo al final del `app.ts` puesto que es el ultimo middleware al que accederemos despues del middleware de not found. Recordar que el middleware del not found crear un error y se lo pasamos como:
+
+```typescript
+next(error)
+```
+
+Definiremos un error handler de la siguiente manera: 
+
+```typescript
+const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+    //devolvemos un objeto con informacion sobre el error
+    const body = {
+        estado: 'KO',
+        type: req.typeRequest, //GET, POST, DELETE, PUT...
+        mensaje: payload.error.message, //mensaje del error
+        stack: process.env.NODE_ENV === 'prod' ? '' : payload.error.stack, //si estamos en producción no mostramos el stack del error puesto que el usuario no debe de ver eso.
+    }
+    //predefinimos el status code como 500
+    res.status(500);
+    return res.json(body);
+};
+```
+Entonces al pasarle un error por parámetro, nos saltará al error handler.
+
+```typescript
+import * as middleware from './middlewares/'
+//middleware para obtener el token. Si no hay token en la petición HTTP, entonces devolvemos un /*return res.status(403).send({ message: 'No token provided.' })*/
+app.use(middleware.retrieveToken)
+//a partir de aquí significa que todo lo que vaya por debajo del middleware de retrieveToken, para poder ser llamado, hace falta que pasemos un token en la petición HTTP.
+app.use(Routes.RESOURCE, Routers.RESOURCE);
+app.use(middleware.notFound)
+//el error handler al final del fichero 'app.ts'
+app.use(middleware.errorHandler)
+```
+
+
+1. error: El error que le vamos a pasar al handler
+2. req: 
+
 * #### Custom logger
 
 * #### :lock: *`jwt`* 'JSON Web Tokens' 
