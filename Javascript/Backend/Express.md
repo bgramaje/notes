@@ -445,7 +445,7 @@ declare global {
         },
         ```
 
-        > "{{ ENV }}" Este comando es sustituido por el nombre de la rama que creamos en gitlab | github. Estos nombres de rama coinciden con la extensión final de los ficheros (pre, prod, dev). Con lo que con un comando y haciendo la sustitución del contenido posteriormente en una pipeline, podemos tener para todas las ramas el comando `npm run pre` || `npm run prod` || `npm run dev`
+        > "{{ ENV }}" Este comando es sustituido por el nombre de la rama que creamos en gitlab | github. Estos nombres de rama coinciden con la extensión final de los ficheros (pre, prod, dev). Con lo que con un comando y haciendo la sustitución del contenido posteriormente en una pipeline, podemos tener para todas las ramas el comando exclusivo de estas `npm run pre` || `npm run prod` || `npm run dev`
 
         Sino la otra manera sería hacer lo siguiente:
 
