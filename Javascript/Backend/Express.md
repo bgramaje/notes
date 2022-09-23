@@ -359,10 +359,9 @@ Podemos re-declarar el objeto de *`request`* de Express.js, para poder guardar e
 
 > Esto es una buena práctica porque podemos hacer una única peticion a la BBDD y llamarla úna unica vez para saber quien soy, en vez de en cada controller/service ir haciendo un getUsuario etc...
 
-> Para controlar el rol y saber a que tiene acceso y a que no, también es recomendable la creación de un middleware
+> Para controlar el rol y saber a que tiene acceso y a que no, también es recomendable la creación de un middleware.
 
 ```typescript
-import * as middleware from './middlewares/'
 declare global {
     namespace Express {
         /**
@@ -373,17 +372,49 @@ declare global {
         interface Request {
             user: string
             token: string,
-            ipClient: string
+            ip: string
             rol: string,
         }
+        //para acceder luego en el router/controller a los datos del request declarados, hacer un req.user || req.token || req.ip || req.rol
     }
 }
 
 ```
 
-* #### :wrench: Variables de entorno
+* #### :wrench: Environment variables | *`dotenv`*
 
-* #### :lock: *`jwt`* Json Web Tokens 
+    Las variables de entorno son aquellas variables guardadas en el sistema/máquina que no queremos que estén de manera hard-coded en el código y a la cual desde el código accedemos a ellas. Normalmente en estas variables guardamos direcciones URL's donde apuntamos a API's, URI's de conexión a BBDD y demás
+
+    > Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env
+
+    * ##### Installation
+
+    ```bash
+    # install locally (recommended)
+    npm install dotenv --save
+    ```
+
+    * ##### Stages
+
+    Esto ya es recomendación mía y luego hay que tener en cuenta el despliegue de esto, pero yo recomiendo 4 entornos.
+    1. *`local`*, entorno el cual nosotros estamos programando en nuestro equipo de uso diario.
+    2. *`development`*, entorno el cual el equipo sube el código de todos y se comprueba el correcto funcionamiento
+    3. *`preproduction`*, entorno previo al de producción donde se le indica al cliente que es un entorno de pruebas, para que pueda sobre una base de datos de pruebas, probar el producto, si satisface sus necesidades y requerimientos.
+    4. *`production`*, entorno final de producción, donde todo el software ha sido validado y dado el OK a su despliegue.
+
+    ```markdown
+    .
+    ├── ...
+    ├── .env.pre          # Environment variables for `preproduction` stage
+    ├── .env.prod         # Environment variables for `production` stage
+    ├── .env.dev          # Environment variables for `development` stage
+    ├── .env.local        # Environment variables for `local` stage
+    └── ...
+    ```
+
+
+
+* #### :lock: *`jwt`* 'JSON Web Tokens' 
 * #### Error Handler
 * #### Custom logger
 
