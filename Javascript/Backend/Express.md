@@ -396,7 +396,6 @@ declare global {
     # typescript
     npm install @types/dotenv --save
     ```
-    
 
     * ##### Entornos
 
