@@ -177,6 +177,7 @@ export default app;
         import express, { Response, Request, NextFunction } from "express";
         //importamos el asyncHandler
         import asyncHandler from "express-async-handler";
+        //importamos los middlewares
         import * as middlewares from "../middlewares/";
         //importamos el controller
         import * as controller from "../cotroller/resource.controller";
@@ -380,9 +381,9 @@ declare global {
 
 ```
 
-* #### Variables de entorno
+* #### :wrench: Variables de entorno
 
-
+* #### :lock: *`jwt`* Json Web Tokens 
 * #### Error Handler
 * #### Custom logger
 
