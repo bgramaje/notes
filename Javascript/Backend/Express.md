@@ -392,7 +392,10 @@ declare global {
     ```bash
     # install locally (recommended)
     npm install dotenv --save
+    # typescript
+    npm install @types/dotenv --save
     ```
+    
 
     * ##### Entornos
 
@@ -423,6 +426,41 @@ declare global {
         Para que nuestro programa lo reconozca el `process.env.DATABASE_URI`, tenemos que lanzar la siguiente secuencia de comandos cuando arrancamos la api, que veremos en la seccion de 'scripts'
 
     * ##### Scripts
+
+        Para poder ejecutar bien los distintos entornos que tenemos, necesitamos una librería y los siguientes comandos declarados en el *`package.json`*
+        
+        ```bash
+        # install locally (recommended)
+        npm install dotenv-cli
+        ```
+
+        Luego en el *`package.json`* declararemos los siguientes comandos en la sección de `scripts`.
+
+        ```json
+            scripts": {
+            "build": "rimraf ./build && tsc",
+            "local": "dotenv -e .env.local -- nodemon -r dotenv/config src/index.ts",
+            "{{ ENV }}": "dotenv -e .env.{{ ENV }} -- node -r dotenv/config build/index.js",
+            "start": "npm run local"
+        },
+        ```
+
+        > "{{ ENV }}" Este comando es sustituido por el nombre de la rama que creamos en gitlab | github. Estos nombres de rama coinciden con la extensión final de los ficheros (pre, prod, dev). Con lo que con un comando y haciendo la sustitución del contenido posteriormente en una pipeline, podemos tener para todas las ramas el comando `npm run pre` || `npm run prod` || `npm run dev`
+
+        Sino la otra manera sería hacer lo siguiente:
+
+        ```json
+            scripts": {
+            "build": "rimraf ./build && tsc",
+            "local": "dotenv -e .env.local -- nodemon -r dotenv/config src/index.ts",
+            "dev": "dotenv -e .env.dev -- node -r dotenv/config build/index.js",
+            "pre": "dotenv -e .env.pre -- node -r dotenv/config build/index.js",
+            "prod": "dotenv -e .env.prod -- node -r dotenv/config build/index.js",
+            "start": "npm run local"
+        },
+        ```
+        También hay que observar la diferencia entre el comando `local` con los otros 3. El local ejecuta la versión typescript sin compilar de nuestro código que estamos programando. Mientras que los otros comandos de los distintos entornos ejecutan el javascript compilado que proviene del typescript. Es decir, despues de hacer el `npm run build` podemos ejecutar los comandos `npm run pre` || `npm run prod` || `npm run dev`.
+
 
 
 
